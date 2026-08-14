@@ -6,14 +6,13 @@
 
   "issues": [
     {
-      "title": "Uppgift46",
+      "title": "Uppgift1",
       "body": "Skapa en klass.",
-      "replace_labels": false,
+      "replace_labels": true,
 
       "labels": [
         "programmering1",
-        "Test",
-        "Uppgift5"
+        "25-26"
       ],
 
       "fields": {
@@ -24,13 +23,14 @@
       }
     },
     {
-      "title": "Uppgift45",
+      "title": "Uppgift2",
       "body": "Skapa en klass.",
-      "type": "Feature",
+      "type": "Task",
       "replace_labels": true,
 
       "labels": [
-        "programmering1"
+        "programmering2",
+        "25-26"
       ],
 
       "milestone": {
