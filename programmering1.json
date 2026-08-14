@@ -1,0 +1,50 @@
+{
+  "meta": {
+      "course": "Programmering1",
+      "version": "1.0"
+    },
+
+  "issues": [
+    {
+      "title": "Uppgift46",
+      "body": "Skapa en klass.",
+      "replace_labels": false,
+
+      "labels": [
+        "programmering1",
+        "Test",
+        "Uppgift5"
+      ],
+
+      "fields": {
+        "43130494": "2026-09-24",
+        "43130493": "REPO_CREATED",
+        "43735042": "TODAY",
+        "43766569": "COMMITS"
+      }
+    },
+    {
+      "title": "Uppgift45",
+      "body": "Skapa en klass.",
+      "type": "Feature",
+      "replace_labels": true,
+
+      "labels": [
+        "programmering1"
+      ],
+
+      "milestone": {
+        "title": "Moment1",
+        "due": "2026-09-24"
+      },
+
+      "fields": {
+        "43130494": "2026-09-24",
+        "43130492": "High",
+        "43130493": "REPO_CREATED",
+        "43735042": "TODAY",
+        "43766569": "COMMITS"
+      }
+    }
+  ]
+}
