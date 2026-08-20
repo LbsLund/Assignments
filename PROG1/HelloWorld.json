@@ -1,0 +1,27 @@
+{
+  "meta": {
+      "course": "Prog1",
+      "version": "1.0"
+    },
+
+  "issues": [
+    {
+      "title": "Hello World",
+      "body": "Skapa ett program som skriver ut texten - Hello World.",
+      "replace_labels": true,
+
+      "labels": [
+        "PROG1",
+        "26-27",
+        "HelloWorld"
+      ],
+
+      "fields": {
+        "43324089": "2026-08-21",
+        "43324088": "REPO_CREATED",
+        "45568191": "TODAY",
+        "45568200": "COMMITS"
+      }
+    }
+  ]
+}
