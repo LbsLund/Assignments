@@ -1,0 +1,27 @@
+{
+  "meta": {
+      "course": "Prog1",
+      "version": "1.0"
+    },
+
+  "issues": [
+    {
+      "title": "Variables",
+      "body": "Skapa ett program som tar emot ett namn och en ålder som indata. Programmet ska sedan skriva ut en namnet och åldern.",
+      "replace_labels": true,
+
+      "labels": [
+        "PROG1",
+        "26-27",
+        "Variables"
+      ],
+
+      "fields": {
+        "43324089": "2026-08-28",
+        "43324088": "REPO_CREATED",
+        "45568191": "TODAY",
+        "45568200": "COMMITS"
+      }
+    }
+  ]
+}
