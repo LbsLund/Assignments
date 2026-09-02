@@ -1,0 +1,27 @@
+{
+  "meta": {
+      "course": "TEKI1",
+      "version": "1.0"
+    },
+
+  "issues": [
+    {
+      "title": "Input",
+      "body": "Skapa ett program som kan göra beräkningar med olika aritmetiska operationer (+, -, *, /). \nProgrammet ska kunna ta emot två heltal, göra en beräkning och returnera resultatet av operationen.",
+      "replace_labels": true,
+
+      "labels": [
+        "TEKI1",
+        "26-27",
+        "Input"
+      ],
+
+      "fields": {
+        "43324089": "2026-09-03",
+        "43324088": "REPO_CREATED",
+        "45568191": "TODAY",
+        "45568200": "COMMITS"
+      }
+    }
+  ]
+}
