@@ -7,7 +7,7 @@
   "issues": [
     {
       "title": "Input",
-      "body": "Skapa ett program som kan göra beräkningar med olika aritmetiska operationer (+, -, *, /). \nProgrammet ska kunna ta emot två heltal, göra en beräkning och returnera resultatet av operationen.",
+      "body": "Skapa ett program som kan göra beräkningar med olika aritmetiska operationer (+, -, *, /). \nProgrammet ska kunna ta emot två heltal, göra en beräkning och returnera resultatet av operationen. \nLösningen ska lämnas in med tillhörande flödesschema.",
       "replace_labels": true,
 
       "labels": [
