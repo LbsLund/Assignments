@@ -1,0 +1,27 @@
+{
+  "meta": {
+      "course": "Prog1",
+      "version": "1.0"
+    },
+
+  "issues": [
+    {
+      "title": "Iteration",
+      "body": "Skapa ett program där användaren får obegänsat antal försök att skriva in sitt namn utan att starta om programet.",
+      "replace_labels": true,
+
+      "labels": [
+        "PROG1",
+        "26-27",
+        "Iteration"
+      ],
+
+      "fields": {
+        "43324089": "2026-08-28",
+        "43324088": "REPO_CREATED",
+        "45568191": "TODAY",
+        "45568200": "COMMITS"
+      }
+    }
+  ]
+}
