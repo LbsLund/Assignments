@@ -1,0 +1,27 @@
+{
+  "meta": {
+      "course": "Prog1",
+      "version": "1.0"
+    },
+
+  "issues": [
+    {
+      "title": "Random",
+      "body": "Skapa ett program som kan slumpa fram ett tal mellan 1 och 6. Programmet ska sedn skriva ut om talet är mindre eller lika med 3 eller större än 3. Använd en if-sats för att avgöra detta. Upprepa processen med hälp av en while-loop, avsluta loppen om värdet blir 3.",
+      "replace_labels": true,
+
+      "labels": [
+        "PROG1",
+        "26-27",
+        "Random"
+      ],
+
+      "fields": {
+        "43324089": "2026-09-25",
+        "43324088": "REPO_CREATED",
+        "45568191": "TODAY",
+        "45568200": "COMMITS"
+      }
+    }
+  ]
+}
