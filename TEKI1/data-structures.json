@@ -1,0 +1,27 @@
+{
+  "meta": {
+      "course": "TEKI1",
+      "version": "1.0"
+    },
+
+  "issues": [
+    {
+      "title": "Data structures",
+      "body": "Skapa ett program som kan ta emot två heltal och returnera det största talet. \nProgrammet ska kunna ta emot två heltal, göra en jämförelse och returnera det största talet, om båda talen är lika stora ska ni skriva ut texten \"equal\". \nLösningen ska lämnas in med tillhörande flödesschema.",
+      "replace_labels": true,
+
+      "labels": [
+        "TEKI1",
+        "26-27",
+        "DataStructures"
+      ],
+
+      "fields": {
+        "43324089": "2026-10-01",
+        "43324088": "REPO_CREATED",
+        "45568191": "TODAY",
+        "45568200": "COMMITS"
+      }
+    }
+  ]
+}
