@@ -33,6 +33,21 @@
           "title": "Uppgift 2",
           "body": "Uppgift 2.",
           "labels": ["Sub"]
+        },
+        {
+          "title": "Uppgift 3",
+          "body": "Uppgift 3.",
+          "labels": ["Sub"]
+        },
+        {
+          "title": "Uppgift 4",
+          "body": "Uppgift 4.",
+          "labels": ["Sub"]
+        },
+        {
+          "title": "Uppgift 5",
+          "body": "Uppgift 5.",
+          "labels": ["Sub"]
         }
       ]
     }
