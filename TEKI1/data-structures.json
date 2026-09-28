@@ -27,7 +27,11 @@
         {
           "title": "Uppgift 1",
           "body": "Uppgift 1.",
-          "labels": ["DataStructures"]
+          "labels": ["DataStructures"],
+          "fields": {
+            "43324089": "2026-10-01",
+            "45568191": "TODAY"
+          }
         },
         {
           "title": "Uppgift 2",
