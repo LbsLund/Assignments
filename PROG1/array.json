@@ -1,0 +1,27 @@
+{
+  "meta": {
+      "course": "Prog1",
+      "version": "1.0"
+    },
+
+  "issues": [
+    {
+      "title": "Array",
+      "body": "Skapa ett program som använder en array för att lagra flera slumpade värden.",
+      "replace_labels": true,
+
+      "labels": [
+        "PROG1",
+        "26-27",
+        "Array"
+      ],
+
+      "fields": {
+        "43324089": "2026-10-2026",
+        "43324088": "REPO_CREATED",
+        "45568191": "TODAY",
+        "45568200": "COMMITS"
+      }
+    }
+  ]
+}
