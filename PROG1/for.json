@@ -1,0 +1,27 @@
+{
+  "meta": {
+      "course": "Prog1",
+      "version": "1.0"
+    },
+
+  "issues": [
+    {
+      "title": "For",
+      "body": "Skapa ett program som gör uppräkning med hjälp av en for-loop.",
+      "replace_labels": true,
+
+      "labels": [
+        "PROG1",
+        "26-27",
+        "For"
+      ],
+
+      "fields": {
+        "43324089": "2026-10-02",
+        "43324088": "REPO_CREATED",
+        "45568191": "TODAY",
+        "45568200": "COMMITS"
+      }
+    }
+  ]
+}
