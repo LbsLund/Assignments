@@ -1,0 +1,27 @@
+{
+  "meta": {
+      "course": "TEKI1",
+      "version": "1.0"
+    },
+
+  "issues": [
+    {
+      "title": "Challenges",
+      "body": "Lös utmaningarna i uppfigretna, skapa en ny .py-fil för varja problem.",
+      "replace_labels": true,
+
+      "labels": [
+        "TEKI1",
+        "26-27",
+        "Challenges"
+      ],
+
+      "fields": {
+        "43324089": "2026-10-22",
+        "43324088": "REPO_CREATED",
+        "45568191": "TODAY",
+        "45568200": "COMMITS"
+      }
+    }
+  ]
+}
