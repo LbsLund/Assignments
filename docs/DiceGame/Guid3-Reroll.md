@@ -1,5 +1,5 @@
-# Dice Game
-Guide 3 - Reroll Dice
+# Dice Game - Guide 3
+Guid för implementation av omslag av tärningar till tärningsspelet
 
 ## Overview
 Flödesschemat visar en lösning för att implementera ett system för att slå om tärningar. Om en spelare slår en etta eller en femma kan spelaren välja att slå om tärningarna som inte gav poäng. Poängen för rundan läggs till spelarens totala poäng och när en spelare når 1000 poäng vinner den spelaren spelet.

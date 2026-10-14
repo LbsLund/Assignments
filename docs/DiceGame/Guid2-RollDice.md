@@ -1,5 +1,5 @@
-# Dice Game
-Guide 2 - Roll Dice
+# Dice Game - Guide 2 
+Guid för implementation av tärningar till tärningsspelet
 
 ## Overview
 Flödesschemat visar en lösning för att implementera ett system som hantera tärningsslag och poängberäkning. Varje runda slås fem tärningar och poängen beräknas utifrån tärningarnas värden. En slagen etta ger 100 poäng och en femma ger 50 poäng. Alla andra tärningsvärden ger inga poäng. Poängen för rundan läggs till spelarens totala poäng och när en spelare når 1000 poäng vinner den spelaren spelet.

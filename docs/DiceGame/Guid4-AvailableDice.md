@@ -1,5 +1,5 @@
-# Dice Game
-Guid 4 - Available Dice
+# Dice Game - Guid 4
+Guid för att hantera antalet tillgängliga tärningar till tärningsspelet
 
 ## Overview
 Flödesschemat visar en lösning för att hantera fallet då en spelare får poäng på alla tärningar. Om det händer måste spelaren slå om alla tärningar. Om någon av tärningarna gav poäng kan spelaren välja att slå om de tärningar som inte gav poäng eller att spara poängen och avsluta sin tur. Om ingen av tärningarna i ett nytt slag gav poäng får spelaren noll poäng för hela rundan och turen går över till nästa spelare.

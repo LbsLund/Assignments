@@ -1,5 +1,5 @@
-# Dice Game
-Guide 1 - Players
+# Dice Game - Guide 1
+Guid för implementation av spelare till tärningsspelet
 
 ## Overview
 Flödeschemat visar en lösning för att inplemementera ett system som hantera ett godtyckligt antal spelare i ett tärningsspel. Systemet ska hålla reda på spelarnas poäng och växla spelare när deras runda är slut. Här finns också en lösning för att avgöra när en spelare har vunnit spelet, men än så länge delas inte några poäng ut. Det är först senare när poängsystemet är implementerat som vi kan testa logiken för att vinna spelet. Inplementation av poängsystemet kommer att ske i nästa guide.
