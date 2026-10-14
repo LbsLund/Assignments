@@ -35,10 +35,8 @@ ChangePlayer-- No -->ResetPlayer[Set curPlayer to zero]
 DecideWinner-- Yes -->PlayingFalse[Set playing to false]
 PlayingFalse-->Winner[/Output winner/]
 ResetPlayer-->GameLoopConector
-GameLoopConector-->GameLoop
 Winner-->GameLoopConector
-
-GameLoopConector@{ shape: f-circ, label: "Junction" }
+GameLoopConector-->GameLoop
 ```
 
 ## Usage
