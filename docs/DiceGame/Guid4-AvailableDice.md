@@ -1,12 +1,11 @@
 # Dice Game
-Guide 3 - Reroll Dice
+Guid 4 - Available Dice
 
 ## Overview
-Flödesschemat visar en lösning för att implementera ett system för att slå om tärningar. Om en spelare slår en etta eller en femma kan spelaren välja att slå om tärningarna som inte gav poäng. Poängen för rundan läggs till spelarens totala poäng och när en spelare når 1000 poäng vinner den spelaren spelet.
+Flödesschemat visar en lösning för att hantera fallet då en spelare får poäng på alla tärningar. Om det händer måste spelaren slå om alla tärningar. Om någon av tärningarna gav poäng kan spelaren välja att slå om de tärningar som inte gav poäng eller att spara poängen och avsluta sin tur. Om ingen av tärningarna i ett nytt slag gav poäng får spelaren noll poäng för hela rundan och turen går över till nästa spelare.
 
 ### Features
-* First feature
-* Second feature
+* Om en spelare får poäng på alla tärningar måste spelaren slå om alla tärningar.
 
 ## Visuals
 
@@ -83,7 +82,7 @@ DecideWinner-- No -->TurnOver[/"Output Player curPlayer + 1,<br/>, press any key
 TurnOver-->InKey2[/Input Read key/]
 InKey2-->IncrementPlayer[Increment curPlayer]
 IncrementPlayer-->ChangePlayer{curPlayer < numPlayer}
-ChangePlayer-- Yes -->GameLoopConector((( )))
+ChangePlayer-- Yes -->GameLoopConector(( ))
 ChangePlayer-- No -->ResetPlayer[Set curPlayer to zero]
 
 %% Win
@@ -93,24 +92,24 @@ ResetPlayer-->GameLoopConector
 GameLoopConector-->GameLoop
 Winner-->GameLoopConector
 
-classDef newNode stroke:green,stroke-width:5px
-classDef modNode stroke:blue,stroke-width:5px
+classDef NewNode stroke:green,stroke-width:5px
+classDef ModNode stroke:blue,stroke-width:5px
+classDef MovedNode stroke:purple,stroke-width:5px
 
-class CreateTurnActive,TurnLoop,ResetAvailableDice,CreateRollScore,CreateScoreDice,IncrementScoreDice,Out,RollScoreGZero,RollToTurnScore,SubDice,AvailableDiceZero,ReAvailableDice,OutReroll,NoScore,TurnLoopFalse,TurnScoreZero,RAvailableDice,OutTurn,RollAgain newNode
+class AvailableDiceZero,ReAvailableDice,OutReroll NewNode
 
-class One,Five,OTurnScore,OutputRollScore,TurnToPlayerScore modNode
+%% class One,Five ModNode
 
+%% class OTurnScore,OutputRollScore,TurnToPlayerScore MovedNode
 ```
 
 ## Usage
 Utgå från er tidigare lösning och lägg till de nya funktionerna med hjälp av flödesschemat. 
 * Nya noder är markerade med grön färg.
-* Modifierade noder är markerade med blå färg.
 
-### Hints
-* För att slå fem tärniningar används en for-loop. De tre noderna *Create i set to zero*, *i < numGameDice* och *Increment i* beskriver for-loopen.
-* Noden *Generate random number 1-6* motsvarat ett tärningsslag. För att lösa det ska programmetgenerera ett slumptal mellan 1 och 6. Loppen upprepar sedan denna process fem gånger.
-* Noden *Score?* beskriver de if-satser som avgör om tärningsslaget ger poäng eller inte. Om tärningen visar en etta läggs 100 poäng till turnScore och om tärningen visar en femma läggs 50 poäng till turnScore. För övriga resultat av tärnningsslaget behövs inga if-satser då de inte ger några poäng.
+### Tip
+* Om en spelare får poäng på alla tärningar ska spelaren inte få välja att spara poängen och avsluta sin tur, spelaren måste i det fallet slå om alla tärningar.
+* Viktigt att återställa antalet tillgänliga tärningar när en spelare får poäng på alla tärningar.
 
 Testa programmet ofta för att se om det fungerar som förväntat.
 
