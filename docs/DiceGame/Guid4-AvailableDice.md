@@ -82,7 +82,7 @@ DecideWinner-- No -->TurnOver[/"Output Player curPlayer + 1,<br/>, press any key
 TurnOver-->InKey2[/Input Read key/]
 InKey2-->IncrementPlayer[Increment curPlayer]
 IncrementPlayer-->ChangePlayer{curPlayer < numPlayer}
-ChangePlayer-- Yes -->GameLoopConector(( ))
+ChangePlayer-- Yes -->GameLoopConector((( )))
 ChangePlayer-- No -->ResetPlayer[Set curPlayer to zero]
 
 %% Win
