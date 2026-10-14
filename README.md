@@ -1,4 +1,2 @@
 # Assignments
 Assignment repository
-
-Test
