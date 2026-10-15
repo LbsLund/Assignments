@@ -38,8 +38,8 @@ InKey-->PressToRoll[/"Output Press any key to roll dice!"/]
 %% RollLoop
 PressToRoll-->CreateI[Create int i, set to zero]
 CreateI-->RollLoop{i < availableDice}
-RollLoop-- Yes -->Roll[Generate random number 1-6]
-Roll-->OutNumber[/Output random number/]
+RollLoop-- Yes -->Roll[Generate int randomNumber 1-6]
+Roll-->OutNumber[/Output randomNumber/]
 OutNumber-->Score{Score?}
 Score-- 1 -->One[Add 100 to turnScore]
 Score-- 5 -->Five[Add 50 to turnScore]

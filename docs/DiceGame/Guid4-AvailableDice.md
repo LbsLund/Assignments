@@ -1,5 +1,5 @@
 # Dice Game - Guid 4
-Guid för att implementation av lösning för att slå om alla tärningar i tärningsspelet
+Guid för implementation av lösning för att slå om alla tärningar i tärningsspelet
 
 ## Overview
 Flödesschemat visar en lösning för att hantera fallet då en spelare får poäng på alla tärningar. Om det händer måste spelaren slå om alla tärningar. Om någon av tärningarna gav poäng kan spelaren välja att slå om de tärningar som inte gav poäng eller att spara poängen och avsluta sin tur. Om ingen av tärningarna i ett nytt slag gav poäng får spelaren noll poäng för hela rundan och turen går över till nästa spelare.
@@ -41,8 +41,7 @@ RollLoop-- no -->Out[/Output Player curPlayer + 1<br/>rollScore/]
 Out-->RollScoreGZero{rollScore > 0}
 RollScoreGZero-- Yes -->RollToTurnScore[Add rollScore to turnScore]
 RollToTurnScore-->OTurnScore[/Output Player curPlayer + 1,<br/>turnScore/]
-OTurnScore-->SubDice[Subtract scoreDice<br/> from availableDice]
-SubDice-->AvailableDiceZero{availableDice <= 0}
+OTurnScore-->AvailableDiceZero{availableDice <= 0}
 AvailableDiceZero-- Yes -->ReAvailableDice[Set availableDice to numGameDice]
 ReAvailableDice-->OutReroll[/"Output Player curPlayer + 1,<br/>availableDice",<br/> score on all dice!/]
 OutReroll-->OutputRollScore[/"Output Player curPlayer + 1,<br/> scorePlayers[curPlayer]"/]
@@ -63,17 +62,16 @@ TurnLoop-- Yes -->PressToRoll[/"Output Press any key to roll dice!"/]
 PressToRoll-->InKeyRoll[/Input Read key/]
 InKeyRoll-->CreateRollScore[Create int rollScore,<br/>set value to zero]
 CreateRollScore[Create int rollScore,<br/>set value to zero]
-CreateRollScore-->CreateScoreDice[Create int scoreDice,<br/>set value to zero]
-CreateScoreDice-->CreateI[Create int i, set to zero]
+CreateRollScore-->CreateI[Create int i, set to zero]
 CreateI-->RollLoop{i < availableDice}
-RollLoop-- Yes -->Roll[Generate random number 1-6]
-Roll-->OutNumber[/Output random number/]
+RollLoop-- Yes -->Roll[Generate randomNumber 1-6]
+Roll-->OutNumber[/Output randomNumber/]
 OutNumber-->Score{Score?}
 Score-- 1 -->One[Add 100 to rollScore]
 Score-- 5 -->Five[Add 50 to rollScore]
 Score-- 2,3,4,6 -->IncrementI[Increment i]
-One & Five -->IncrementScoreDice[Increment scoreDice]
-IncrementScoreDice-->IncrementI
+One & Five -->DecrementAvailable[Decrement availableDice]
+DecrementAvailable-->IncrementI
 IncrementI -->RollLoop
 
 %% Change player

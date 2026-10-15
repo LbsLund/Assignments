@@ -42,12 +42,7 @@ RollLoop-- no -->Out[/Output Player curPlayer + 1<br/>rollScore/]
 Out-->RollScoreGZero{rollScore > 0}
 RollScoreGZero-- Yes -->RollToTurnScore[Add rollScore to turnScore]
 RollToTurnScore-->OTurnScore[/Output Player curPlayer + 1,<br/>turnScore/]
-OTurnScore-->SubDice[Subtract scoreDice<br/> from availableDice]
-SubDice-->AvailableDiceZero{availableDice <= 0}
-AvailableDiceZero-- Yes -->ReAvailableDice[Set availableDice to numGameDice]
-ReAvailableDice-->OutReroll[/"Output Player curPlayer + 1,<br/>availableDice",<br/> score on all dice!/]
-OutReroll-->OutputRollScore[/"Output Player curPlayer + 1,<br/> scorePlayers[curPlayer]"/]
-AvailableDiceZero-- No -->OutTurn[/"Output Player curPlayer + 1,<br/>availableDice,<br/> Roll Again?"/]
+OTurnScore-->OutTurn[/"Output Player curPlayer + 1,<br/>availableDice,<br/> Roll Again?"/]
 OutTurn-->RollAgain{RollAgain?}
 RollScoreGZero-- No -->TurnScoreZero[Set turnScore to zero]
 TurnScoreZero-->RAvailableDice[Set availableDice to numGameDice]
@@ -64,17 +59,16 @@ TurnLoop-- Yes -->PressToRoll[/"Output Press any key to roll dice!"/]
 PressToRoll-->InKeyRoll[/Input Read key/]
 InKeyRoll-->CreateRollScore[Create int rollScore,<br/>set value to zero]
 CreateRollScore[Create int rollScore,<br/>set value to zero]
-CreateRollScore-->CreateScoreDice[Create int scoreDice,<br/>set value to zero]
-CreateScoreDice-->CreateI[Create int i, set to zero]
+CreateRollScore-->CreateI[Create int i, set to zero]
 CreateI-->RollLoop{i < availableDice}
-RollLoop-- Yes -->Roll[Generate random number 1-6]
-Roll-->OutNumber[/Output random number/]
+RollLoop-- Yes -->Roll[Generate randomNumber 1-6]
+Roll-->OutNumber[/Output randomNumber/]
 OutNumber-->Score{Score?}
 Score-- 1 -->One[Add 100 to rollScore]
 Score-- 5 -->Five[Add 50 to rollScore]
 Score-- 2,3,4,6 -->IncrementI[Increment i]
-One & Five -->IncrementScoreDice[Increment scoreDice]
-IncrementScoreDice-->IncrementI
+One & Five -->DecrementAvailab[Decrement availableDice]
+DecrementAvailab-->IncrementI
 IncrementI -->RollLoop
 
 %% Change player
@@ -96,7 +90,7 @@ Winner-->GameLoopConector
 classDef newNode stroke:green,stroke-width:5px
 classDef modNode stroke:blue,stroke-width:5px
 
-class CreateTurnActive,TurnLoop,ResetAvailableDice,CreateRollScore,CreateScoreDice,IncrementScoreDice,Out,RollScoreGZero,RollToTurnScore,SubDice,AvailableDiceZero,ReAvailableDice,OutReroll,NoScore,TurnLoopFalse,TurnScoreZero,RAvailableDice,OutTurn,RollAgain newNode
+class CreateTurnActive,TurnLoop,ResetAvailableDice,CreateRollScore,DecrementAvailab,Out,RollScoreGZero,RollToTurnScore,SubDice,AvailableDiceZero,ReAvailableDice,OutReroll,NoScore,TurnLoopFalse,TurnScoreZero,RAvailableDice,OutTurn,RollAgain newNode
 
 class One,Five,OTurnScore,OutputRollScore,TurnToPlayerScore modNode
 
@@ -108,9 +102,12 @@ Utgå från er tidigare lösning och lägg till de nya funktionerna med hjälp a
 * Modifierade noder är markerade med blå färg.
 
 ### Hints
-* För att slå fem tärniningar används en for-loop. De tre noderna *Create i set to zero*, *i < numGameDice* och *Increment i* beskriver for-loopen.
-* Noden *Generate random number 1-6* motsvarat ett tärningsslag. För att lösa det ska programmetgenerera ett slumptal mellan 1 och 6. Loppen upprepar sedan denna process fem gånger.
-* Noden *Score?* beskriver de if-satser som avgör om tärningsslaget ger poäng eller inte. Om tärningen visar en etta läggs 100 poäng till turnScore och om tärningen visar en femma läggs 50 poäng till turnScore. För övriga resultat av tärnningsslaget behövs inga if-satser då de inte ger några poäng.
+* Variabeln *turnScore* håller koll på poängen som genereas på en runda. 
+* Variabeln *rollScore* håller koll på poängen som genereas varje tärningsslag, efter ett slag adderas *rollScore* till *turnScore*. 
+* Variabeln *availableDice* håller koll på hur många tärningar som är tillgängliga att slå, *availableDice* subtraheras med 1 för varje tärning som ger poäng. 
+* Om *rollScore* är noll när alla tillgängliga tärningar är slagna sätts *turnScore* till noll och spelarens tur avslutas.
+* Om *rollScore* inte är noll när alla tillgängliga tärningar är slagna kan spelaren välja att slå om de tillgängliga tärningarna, men riskerar då att få noll i *rollScore* och därmed noll i *turnScore*.
+* Istället för att slå om kan spelaren välja att spara *turnScore* i *scorePlayer[curPlayer]*, poäng som sparats på detta vis kan inte försvinna.
 
 Testa programmet ofta för att se om det fungerar som förväntat.
 
