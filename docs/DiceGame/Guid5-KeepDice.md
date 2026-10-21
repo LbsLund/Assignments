@@ -5,7 +5,7 @@ Guid för implementation av lösning för att fortsätt vidare med föregående 
 Flödesschemat visar en lösning för att implementera ett system för att ge en spelare möjlighet att behålla poängen från föregående spelare. Om en spelare sparar poäng i slutet av sin runda får nästa spelare möjlighet att fortsätta med samma antal poäng och tärningar. Om spelaren väljer att inte fortsätta så börjar rundan med noll poäng och fem tärningar som vanligt.
 
 ### Features
-* Spelaren får mölighet att spela vidare på föregående spelares poäng och antal tärningar.
+* Spelaren får möjlighet att spela vidare på föregående spelares poäng och antal tärningar.
 
 ## Visuals
 
@@ -17,14 +17,14 @@ Start([Start])-->OutNumPlayer[/Output: Type number of players:/]
 OutNumPlayer-->InNumPlayers[/Input numPlayers/]
 InNumPlayers-->CreatePlayers[Create int-array scorePlayers,<br/>set size to numPlayers]
 CreatePlayers-->CreateCurrentPlayer[Create int curPlayer,<br/>set value to zero]
-CreateCurrentPlayer-->CreateWinniongScore[Create int winningScore,<br/>set value to 1000]
-CreateWinniongScore-->CreateGameDice[Create int numGameDice,<br/>set to five]
+CreateCurrentPlayer-->CreateWinningScore[Create int winningScore,<br/>set value to 1000]
+CreateWinningScore-->CreateGameDice[Create int numGameDice,<br/>set to five]
 CreateGameDice-->CreateAvailableDice[Create int availableDice,<br/>set to numGameDice]
-CreateAvailableDice-->CreateturnScore[Create int turnScore,<br/>set to zero]
-CreateturnScore-->CreateRandom[Create Random random,<br/>set to new Random]
+CreateAvailableDice-->CreateTurnScore[Create int turnScore,<br/>set to zero]
+CreateTurnScore-->CreateRandom[Create Random random,<br/>set to new Random]
 CreateRandom-->CreatePlaying[Create bool playing,<br/>set value to true]
 
-%% Gameloop
+%% Game loop
 CreatePlaying-->GameLoop{playing?}
 GameLoop-- No -->GameOver[/Output Press any key to exit/]
 GameOver-->EndGame[/Input Read key/]
@@ -86,15 +86,15 @@ DecideWinner-- No -->TurnOver[/"Output Player curPlayer + 1,<br/>, press any key
 TurnOver-->InKey2[/Input Read key/]
 InKey2-->IncrementPlayer[Increment curPlayer]
 IncrementPlayer-->ChangePlayer{curPlayer < numPlayer}
-ChangePlayer-- Yes -->GameLoopConector((( )))
+ChangePlayer-- Yes -->GameLoopConnector((( )))
 ChangePlayer-- No -->ResetPlayer[Set curPlayer to zero]
 
 %% Win
 DecideWinner-- Yes -->PlayingFalse[Set playing to false]
 PlayingFalse-->Winner[/Output winner/]
-ResetPlayer-->GameLoopConector
-GameLoopConector-->GameLoop
-Winner-->GameLoopConector
+ResetPlayer-->GameLoopConnector
+GameLoopConnector-->GameLoop
+Winner-->GameLoopConnector
 
 classDef newNode stroke:green,stroke-width:5px
 classDef modNode stroke:blue,stroke-width:5px
@@ -110,7 +110,7 @@ Utgå från er tidigare lösning och lägg till de nya funktionerna med hjälp a
 * Nya noder är markerade med grön färg.
 
 ### Tip
-Glöm inte att harera antalet tillgängliga tärningar. 
+Glöm inte att hantera antalet tillgängliga tärningar. 
 * Om spelaren väljer att fortsätta med poängen från föregående runda så ska spelaren ha samma antal tillgängliga tärningar som förra spelaren hade när den rundan avslutades. 
 * Om spelaren inte vill fortsätta med poängen från föregående runda så ska poängen sättas till noll och antalet tillgängliga tärningar till fem.
 

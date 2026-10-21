@@ -17,21 +17,21 @@ Start([Start])-->OutNumPlayer[/Output: Type number of players:/]
 OutNumPlayer-->InNumPlayers[/Input numPlayers/]
 InNumPlayers-->CreatePlayers[Create int-array scorePlayers,<br/>set size to numPlayers]
 CreatePlayers-->CreateCurrentPlayer[Create int curPlayer,<br/>set value to zero]
-CreateCurrentPlayer-->CreateWinniongScore[Create int winningScore,<br/>set value to 1000]
-CreateWinniongScore-->CreateGameDice[Create int numGameDice,<br/>set to five]
+CreateCurrentPlayer-->CreateWinningScore[Create int winningScore,<br/>set value to 1000]
+CreateWinningScore-->CreateGameDice[Create int numGameDice,<br/>set to five]
 CreateGameDice-->CreateAvailableDice[Create int availableDice,<br/>set to numGameDice]
-CreateAvailableDice-->CreateturnScore[Create int turnScore,<br/>set to zero]
-CreateturnScore-->CreateRandom[Create Random random,<br/>set to new Random]
+CreateAvailableDice-->CreateTurnScore[Create int turnScore,<br/>set to zero]
+CreateTurnScore-->CreateRandom[Create Random random,<br/>set to new Random]
 CreateRandom-->CreatePlaying[Create bool playing,<br/>set value to true]
 
-%% Gameloop
+%% Game loop
 CreatePlaying-->GameLoop{playing?}
 GameLoop-- No -->GameOver[/Output Press any key to exit/]
 GameOver-->EndGame[/Input Read key/]
 EndGame-->End([End])
 GameLoop-- Yes -->OutputPlayer[/Output<br/> It is Player curPlayer + 1´s turn/]
-OutputPlayer-->ResetturnScore[Set turnScore to zero]
-ResetturnScore-->ResetAvailableDice[Set availableDice to numGameDice]
+OutputPlayer-->ResetTurnScore[Set turnScore to zero]
+ResetTurnScore-->ResetAvailableDice[Set availableDice to numGameDice]
 ResetAvailableDice-->CreateTurnActive[Create bool turnActive,<br/>set value to true]
 CreateTurnActive-->TurnLoop{turnActive?}
 
@@ -80,15 +80,15 @@ DecideWinner-- No -->TurnOver[/"Output Player curPlayer + 1,<br/>, press any key
 TurnOver-->InKey2[/Input Read key/]
 InKey2-->IncrementPlayer[Increment curPlayer]
 IncrementPlayer-->ChangePlayer{curPlayer < numPlayer}
-ChangePlayer-- Yes -->GameLoopConector((( )))
+ChangePlayer-- Yes -->GameLoopConnector((( )))
 ChangePlayer-- No -->ResetPlayer[Set curPlayer to zero]
 
 %% Win
 DecideWinner-- Yes -->PlayingFalse[Set playing to false]
 PlayingFalse-->Winner[/Output winner/]
-ResetPlayer-->GameLoopConector
-GameLoopConector-->GameLoop
-Winner-->GameLoopConector
+ResetPlayer-->GameLoopConnector
+GameLoopConnector-->GameLoop
+Winner-->GameLoopConnector
 
 classDef NewNode stroke:green,stroke-width:5px
 classDef ModNode stroke:blue,stroke-width:5px
@@ -107,7 +107,7 @@ Utgå från er tidigare lösning och lägg till de nya funktionerna med hjälp a
 
 ### Tip
 * Om en spelare får poäng på alla tärningar ska spelaren inte få välja att spara poängen och avsluta sin tur, spelaren måste i det fallet slå om alla tärningar.
-* Viktigt att återställa antalet tillgänliga tärningar när en spelare får poäng på alla tärningar.
+* Viktigt att återställa antalet tillgängliga tärningar när en spelare får poäng på alla tärningar.
 
 Testa programmet ofta för att se om det fungerar som förväntat.
 

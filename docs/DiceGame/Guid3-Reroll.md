@@ -18,21 +18,21 @@ Start([Start])-->OutNumPlayer[/Output: Type number of players:/]
 OutNumPlayer-->InNumPlayers[/Input numPlayers/]
 InNumPlayers-->CreatePlayers[Create int-array scorePlayers,<br/>set size to numPlayers]
 CreatePlayers-->CreateCurrentPlayer[Create int curPlayer,<br/>set value to zero]
-CreateCurrentPlayer-->CreateWinniongScore[Create int winningScore,<br/>set value to 1000]
-CreateWinniongScore-->CreateGameDice[Create int numGameDice,<br/>set to five]
+CreateCurrentPlayer-->CreateWinningScore[Create int winningScore,<br/>set value to 1000]
+CreateWinningScore-->CreateGameDice[Create int numGameDice,<br/>set to five]
 CreateGameDice-->CreateAvailableDice[Create int availableDice,<br/>set to numGameDice]
-CreateAvailableDice-->CreateturnScore[Create int turnScore,<br/>set to zero]
-CreateturnScore-->CreateRandom[Create Random random,<br/>set to new Random]
+CreateAvailableDice-->CreateTurnScore[Create int turnScore,<br/>set to zero]
+CreateTurnScore-->CreateRandom[Create Random random,<br/>set to new Random]
 CreateRandom-->CreatePlaying[Create bool playing,<br/>set value to true]
 
-%% Gameloop
+%% Game loop
 CreatePlaying-->GameLoop{playing?}
 GameLoop-- No -->GameOver[/Output Press any key to exit/]
 GameOver-->EndGame[/Input Read key/]
 EndGame-->End([End])
 GameLoop-- Yes -->OutputPlayer[/Output<br/> It is Player curPlayer + 1´s turn/]
-OutputPlayer-->ResetturnScore[Set turnScore to zero]
-ResetturnScore-->ResetAvailableDice[Set availableDice to numGameDice]
+OutputPlayer-->ResetTurnScore[Set turnScore to zero]
+ResetTurnScore-->ResetAvailableDice[Set availableDice to numGameDice]
 ResetAvailableDice-->CreateTurnActive[Create bool turnActive,<br/>set value to true]
 CreateTurnActive-->TurnLoop{turnActive?}
 
@@ -67,8 +67,8 @@ OutNumber-->Score{Score?}
 Score-- 1 -->One[Add 100 to rollScore]
 Score-- 5 -->Five[Add 50 to rollScore]
 Score-- 2,3,4,6 -->IncrementI[Increment i]
-One & Five -->DecrementAvailab[Decrement availableDice]
-DecrementAvailab-->IncrementI
+One & Five -->DecrementAvailable[Decrement availableDice]
+DecrementAvailable-->IncrementI
 IncrementI -->RollLoop
 
 %% Change player
@@ -77,20 +77,20 @@ DecideWinner-- No -->TurnOver[/"Output Player curPlayer + 1,<br/>, press any key
 TurnOver-->InKey2[/Input Read key/]
 InKey2-->IncrementPlayer[Increment curPlayer]
 IncrementPlayer-->ChangePlayer{curPlayer < numPlayer}
-ChangePlayer-- Yes -->GameLoopConector((( )))
+ChangePlayer-- Yes -->GameLoopConnector((( )))
 ChangePlayer-- No -->ResetPlayer[Set curPlayer to zero]
 
 %% Win
 DecideWinner-- Yes -->PlayingFalse[Set playing to false]
 PlayingFalse-->Winner[/Output winner/]
-ResetPlayer-->GameLoopConector
-GameLoopConector-->GameLoop
-Winner-->GameLoopConector
+ResetPlayer-->GameLoopConnector
+GameLoopConnector-->GameLoop
+Winner-->GameLoopConnector
 
 classDef newNode stroke:green,stroke-width:5px
 classDef modNode stroke:blue,stroke-width:5px
 
-class CreateTurnActive,TurnLoop,ResetAvailableDice,CreateRollScore,DecrementAvailab,Out,RollScoreGZero,RollToTurnScore,SubDice,AvailableDiceZero,ReAvailableDice,OutReroll,NoScore,TurnLoopFalse,TurnScoreZero,RAvailableDice,OutTurn,RollAgain newNode
+class CreateTurnActive,TurnLoop,ResetAvailableDice,CreateRollScore,DecrementAvailable,Out,RollScoreGZero,RollToTurnScore,SubDice,AvailableDiceZero,ReAvailableDice,OutReroll,NoScore,TurnLoopFalse,TurnScoreZero,RAvailableDice,OutTurn,RollAgain newNode
 
 class One,Five,OTurnScore,OutputRollScore,TurnToPlayerScore modNode
 
@@ -102,8 +102,8 @@ Utgå från er tidigare lösning och lägg till de nya funktionerna med hjälp a
 * Modifierade noder är markerade med blå färg.
 
 ### Hints
-* Variabeln *turnScore* håller koll på poängen som genereas på en runda. 
-* Variabeln *rollScore* håller koll på poängen som genereas varje tärningsslag, efter ett slag adderas *rollScore* till *turnScore*. 
+* Variabeln *turnScore* håller koll på poängen som genereras på en runda. 
+* Variabeln *rollScore* håller koll på poängen som genereras varje tärningsslag, efter ett slag adderas *rollScore* till *turnScore*. 
 * Variabeln *availableDice* håller koll på hur många tärningar som är tillgängliga att slå, *availableDice* subtraheras med 1 för varje tärning som ger poäng. 
 * Om *rollScore* är noll när alla tillgängliga tärningar är slagna sätts *turnScore* till noll och spelarens tur avslutas.
 * Om *rollScore* inte är noll när alla tillgängliga tärningar är slagna kan spelaren välja att slå om de tillgängliga tärningarna, men riskerar då att få noll i *rollScore* och därmed noll i *turnScore*.

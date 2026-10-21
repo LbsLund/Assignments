@@ -17,14 +17,14 @@ Start([Start])-->OutNumPlayer[/Output: Type number of players:/]
 OutNumPlayer-->InNumPlayers[/Input numPlayers/]
 InNumPlayers-->CreatePlayers[Create int-array scorePlayers,<br/>set size to numPlayers]
 CreatePlayers-->CreateCurrentPlayer[Create int curPlayer,<br/>set value to zero]
-CreateCurrentPlayer-->CreateWinniongScore[Create int winningScore,<br/>set value to 1000]
-CreateWinniongScore-->CreateGameDice[Create int numGameDice,<br/>set to five]
+CreateCurrentPlayer-->CreateWinningScore[Create int winningScore,<br/>set value to 1000]
+CreateWinningScore-->CreateGameDice[Create int numGameDice,<br/>set to five]
 CreateGameDice-->CreateAvailableDice[Create int availableDice,<br/>set to numGameDice]
-CreateAvailableDice-->CreateturnScore[Create int turnScore,<br/>set to zero]
-CreateturnScore-->CreateRandom[Create Random random,<br/>set to new Random]
+CreateAvailableDice-->CreateTurnScore[Create int turnScore,<br/>set to zero]
+CreateTurnScore-->CreateRandom[Create Random random,<br/>set to new Random]
 CreateRandom-->CreatePlaying[Create bool playing,<br/>set value to true]
 
-%% Gameloop
+%% Game loop
 CreatePlaying-->GameLoop{playing?}
 GameLoop-- No -->GameOver[/Output Press any key to exit/]
 GameOver-->EndGame[/Input Read key/]
@@ -52,7 +52,7 @@ AddFive-->ScoreFive["Subtract diceRolls[5] from availableDice"]
 ScoreFive-->Out[/Output Player curPlayer + 1<br/>rollScore/]
 
 ScoreLoop-->IsTriplet{"diceRolls[i] >= 3"}
-IsTriplet-- Yes -->TripletScore[Add i*100 to rollscore]
+IsTriplet-- Yes -->TripletScore[Add i*100 to rollScore]
 TripletScore-->SubRollDice["Subtract three from diceRolls[i]"]
 SubRollDice-->Sub3Available[Subtract three from availableDice]
 Sub3Available-->InI
@@ -99,15 +99,15 @@ DecideWinner-- No -->TurnOver[/"Output Player curPlayer + 1,<br/>, press any key
 TurnOver-->InKey2[/Input Read key/]
 InKey2-->IncrementPlayer[Increment curPlayer]
 IncrementPlayer-->ChangePlayer{curPlayer < numPlayer}
-ChangePlayer-- Yes -->GameLoopConector((( )))
+ChangePlayer-- Yes -->GameLoopConnector((( )))
 ChangePlayer-- No -->ResetPlayer[Set curPlayer to zero]
 
 %% Win
 DecideWinner-- Yes -->PlayingFalse[Set playing to false]
 PlayingFalse-->Winner[/Output winner/]
-ResetPlayer-->GameLoopConector
-GameLoopConector-->GameLoop
-Winner-->GameLoopConector
+ResetPlayer-->GameLoopConnector
+GameLoopConnector-->GameLoop
+Winner-->GameLoopConnector
 
 classDef newNode stroke:green,stroke-width:5px
 classDef modNode stroke:blue,stroke-width:5px
@@ -123,12 +123,12 @@ Utgå från er tidigare lösning och lägg till de nya funktionerna med hjälp a
 * Nya noder är markerade med grön färg.
 
 ### Tip
-Glöm inte att harera antalet tillgängliga tärningar. 
-* Skapa en int-array och döp den till *diceRolls* och sätt storeken till 5.
-* När en tärning slås lägger ni till den i *diceRolls* istället för att lägga till poäng. Genom att adera ett på platsen i *diceRolls* som tärningen visar kan vi räkna hur många tärningar som fått ett visst värde.
+Glöm inte att hantera antalet tillgängliga tärningar. 
+* Skapa en int-array och döp den till *diceRolls* och sätt storleken till 5.
+* När en tärning slås lägger ni till den i *diceRolls* istället för att lägga till poäng. Genom att addera ett på platsen i *diceRolls* som tärningen visar kan vi räkna hur många tärningar som fått ett visst värde.
 * Loopa sedan igenom *diceRolls* för att leta efter triss!
-* Addera poängern för trissen till *rollScore*, subtrahera sedan tre från respektive plats i *diceRolls*.
-* Efter loopen aderar ni poängen för ettor och femor till *rollScore*. 
+* Addera poängen för trissen till *rollScore*, subtrahera sedan tre från respektive plats i *diceRolls*.
+* Efter loopen adderar ni poängen för ettor och femmor till *rollScore*. 
 
 Gör en ny loop efter loopen som slår tärningarna
 

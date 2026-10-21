@@ -1,0 +1,27 @@
+{
+  "meta": {
+      "course": "TEKI1",
+      "version": "1.0"
+    },
+
+  "issues": [
+    {
+      "title": "Exercises",
+      "body": "Övningar - Python",
+      "replace_labels": true,
+
+      "labels": [
+        "TEKI1",
+        "26-27",
+        "Exercises"
+      ],
+
+      "fields": {
+        "43324089": "2026-11-05",
+        "43324088": "REPO_CREATED",
+        "45568191": "TODAY",
+        "45568200": "COMMITS"
+      }
+    }
+  ]
+}

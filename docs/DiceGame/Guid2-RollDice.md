@@ -18,21 +18,21 @@ Start([Start])-->OutNumPlayer[/Output: Type number of players:/]
 OutNumPlayer-->InNumPlayers[/Input numPlayers/]
 InNumPlayers-->CreatePlayers[Create int-array scorePlayers,<br/>set size to numPlayers]
 CreatePlayers-->CreateCurrentPlayer[Create int curPlayer,<br/>set value to zero]
-CreateCurrentPlayer-->CreateWinniongScore[Create int winningScore,<br/>set value to 1000]
-CreateWinniongScore-->CreateGameDice[Create int numGameDice,<br/>set to five]
+CreateCurrentPlayer-->CreateWinningScore[Create int winningScore,<br/>set value to 1000]
+CreateWinningScore-->CreateGameDice[Create int numGameDice,<br/>set to five]
 CreateGameDice-->CreateAvailableDice[Create int availableDice,<br/>set to numGameDice]
-CreateAvailableDice-->CreateturnScore[Create int turnScore,<br/>set to zero]
-CreateturnScore-->CreateRandom[Create Random random,<br/>set to new Random]
+CreateAvailableDice-->CreateTurnScore[Create int turnScore,<br/>set to zero]
+CreateTurnScore-->CreateRandom[Create Random random,<br/>set to new Random]
 CreateRandom-->CreatePlaying[Create bool playing,<br/>set value to true]
 
-%% Gameloop
+%% Game loop
 CreatePlaying-->GameLoop{playing?}
 GameLoop-- No -->GameOver[/Output Press any key to exit/]
 GameOver-->EndGame[/Input Read key/]
 EndGame-->End([End])
 GameLoop-- Yes -->OutputPlayer[/Output<br/> It is Player curPlayer + 1´s turn/]
-OutputPlayer-->ResetturnScore[Set turnScore to zero]
-ResetturnScore-->InKey[/Input Read key/]
+OutputPlayer-->ResetTurnScore[Set turnScore to zero]
+ResetTurnScore-->InKey[/Input Read key/]
 InKey-->PressToRoll[/"Output Press any key to roll dice!"/]
 
 %% RollLoop
@@ -49,8 +49,8 @@ IncrementI -->RollLoop
 
 %% End turn
 RollLoop-- no -->AddScoreToPlayer["Add turnScore to<br/>scorePlayers[curPlayer]"]
-AddScoreToPlayer-->OutputturnScore[/"Output Player curPlayer + 1,<br/>turnScore"/]
-OutputturnScore-->OutPlayerScore[/"Output Player curPlayer + 1,<br/>scorePlayers[curPlayer]"/]
+AddScoreToPlayer-->OutputTurnScore[/"Output Player curPlayer + 1,<br/>turnScore"/]
+OutputTurnScore-->OutPlayerScore[/"Output Player curPlayer + 1,<br/>scorePlayers[curPlayer]"/]
 OutPlayerScore-->DecideWinner{"scorePlayers[curPlayer] >= winningScore"}
 
 %% Change player
@@ -58,20 +58,20 @@ DecideWinner-- No -->TurnOver[/"Output Player curPlayer + 1,<br/> press any key 
 TurnOver-->InKey2[/Input Read key/]
 InKey2-->IncrementPlayer[Increment curPlayer]
 IncrementPlayer-->ChangePlayer{curPlayer < numPlayer}
-ChangePlayer-- Yes -->GameLoopConector((( )))
+ChangePlayer-- Yes -->GameLoopConnector((( )))
 ChangePlayer-- No -->ResetPlayer[Set curPlayer to zero]
 
 %% Win
 DecideWinner-- Yes -->PlayingFalse[Set playing to false]
 PlayingFalse-->Winner[/Output winner/]
-ResetPlayer-->GameLoopConector
-GameLoopConector-->GameLoop
-Winner-->GameLoopConector
+ResetPlayer-->GameLoopConnector
+GameLoopConnector-->GameLoop
+Winner-->GameLoopConnector
 
 classDef newNode stroke:green,stroke-width:5px
 classDef modNode stroke:blue,stroke-width:5px
 
-class CreateNumDice,CreateAvailableDice,CreateturnScore,CreateRandom,ResetturnScore,CreateI,RollLoop,Roll,OutNumber,Score,One,Five,IncrementI,OutputturnScore,AddScoreToPlayer,PressToRoll,InKey,OutPlayerScore,CreateGameDice newNode
+class CreateNumDice,CreateAvailableDice,CreateTurnScore,CreateRandom,ResetTurnScore,CreateI,RollLoop,Roll,OutNumber,Score,One,Five,IncrementI,OutputTurnScore,AddScoreToPlayer,PressToRoll,InKey,OutPlayerScore,CreateGameDice newNode
 
 %%class OutputPlayer,TurnOver modNode
 
@@ -82,9 +82,9 @@ Utgå från er tidigare lösning och lägg till de nya funktionerna med hjälp a
 * Nya noder är markerade med grön färg.
 
 ### Hints
-* För att slå fem tärniningar används en for-loop. De tre noderna *Create i set to zero*, *i < numGameDice* och *Increment i* beskriver for-loopen.
-* Noden *Generate random number 1-6* motsvarat ett tärningsslag. För att lösa det ska programmetgenerera ett slumptal mellan 1 och 6. Loppen upprepar sedan denna process fem gånger.
-* Noden *Score?* beskriver de if-satser som avgör om tärningsslaget ger poäng eller inte. Om tärningen visar en etta läggs 100 poäng till turnScore och om tärningen visar en femma läggs 50 poäng till turnScore. För övriga resultat av tärnningsslaget behövs inga if-satser då de inte ger några poäng.
+* För att slå fem tärningar används en for-loop. De tre noderna *Create i set to zero*, *i < numGameDice* och *Increment i* beskriver for-loopen.
+* Noden *Generate random number 1-6* motsvarat ett tärningsslag. För att lösa det ska programmet generera ett slumptal mellan 1 och 6. Loppen upprepar sedan denna process fem gånger.
+* Noden *Score?* beskriver de if-satser som avgör om tärningsslaget ger poäng eller inte. Om tärningen visar en etta läggs 100 poäng till turnScore och om tärningen visar en femma läggs 50 poäng till turnScore. För övriga resultat av tärningsslaget behövs inga if-satser då de inte ger några poäng.
 
 Testa programmet ofta för att se om det fungerar som förväntat.
 
