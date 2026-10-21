@@ -64,25 +64,42 @@ Anrop: quick_sort(numbers)
 
 
 **Anrop 1:**  
-pivot: [5]  
-mindre: [3, 4]  
-större: [9, 8]  
+pivot: [ 5 ]  
+mindre: [ 3, 4 ]  
+större: [ 9, 8 ]  
 Anrop 2: quick_sort(mindre)  
-Anrop 3: quick_sort(större)  
-retur: mindre[3, 4] + pivot[5] + större[8, 9]
+Anrop 5: quick_sort(större)  
+retur: mindre[ 3, 4 ] + pivot[ 5 ] + större[ 8, 9 ]
 
 
 **Anrop 2:**  
-pivot: [3]  
-mindre: [-]  
-större: [4]  
-Både listan mindre och större utlöser nu basfallet och skapar därför inga nya rekursioner.  
-retur: mindre[-] + pivot[3] + större[4]
+pivot: [ 3 ]  
+mindre: [ - ]  
+större: [ 4 ]  
+Anrop 3: quick_sort(mindre)  
+Anrop 4: quick_sort(större)  
+retur: mindre[ - ] + pivot[ 3 ] + större[ 4 ]
 
-**Anrop 3:** 
-pivot: [9]  
-mindre: [8]  
-större: [-]  
-Både listan mindre och större utlöser nu basfallet och skapar därför inga nya rekursioner.  
-retur: mindre[8] + pivot[9] + större[-]
+**Anrop 3:**  
+Mindre-listan är tom och utlöser nu basfallet, därför blir det inga nya rekursioner.  
+retur: mindre[ - ]  
 
+**Anrop 4:**  
+Större-listan har längden ett och utlöser nu basfallet, därför blir det inga nya rekursioner.  
+retur: större[ 4 ]
+
+**Anrop 5:** 
+pivot: [ 9 ]  
+mindre: [ 8 ]  
+större: [ - ]  
+Anrop 6: quick_sort(mindre)  
+Anrop 7: quick_sort(större)   
+retur: mindre[ 8 ] + pivot[ 9 ] + större[ - ]
+
+**Anrop 6:**  
+Mindre-listan har längden ett och utlöser nu basfallet, därför blir det inga nya rekursioner.  
+retur: mindre[ 8 ] 
+
+**Anrop 7:**  
+Större-listan är tom och utlöser nu basfallet, därför blir det inga nya rekursioner.  
+retur: större[ - ] 
