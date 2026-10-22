@@ -2,7 +2,17 @@
 Guid för implementation av lösning för hantera triss i tärningsspelet
 
 ## Overview
-Flödesschemat visar en lösning för hantera triss i tärningsspelet.
+Flödesschemat visar en lösning för att hantera triss i tärningsspelet.
+
+| Triss i: | Poäng |
+|---|---|
+| 1 | 1000 | 
+| 2 | 200 | 
+| 3 | 300 | 
+| 4 | 400 | 
+| 5 | 500 | 
+| 6 | 600 | 
+
 
 ### Features
 * Poäng för triss
@@ -45,18 +55,22 @@ CreateTurnActive-->TurnLoop{turnActive?}
 %% ScoreLoop
 RollLoop-- no -->CreateILoop[Create i,<br/>set to zero]
 CreateILoop-->ScoreLoop{i < numGameDice}
-ScoreLoop-->AddOne["Add 100*diceRolls[1] to rollScore"]
+ScoreLoop-- NO -->Out[/Output Player curPlayer + 1<br/>rollScore/]
+
+ScoreLoop-- Yes -->IsTriplet{"diceRolls[i] >= 3"}
+IsTriplet-- Yes -->CreateMultiplier[Create int multiplier,<br/>set to 100]
+CreateMultiplier-->IsOne{i == 1}
+IsOne-- Yes -->ChangeMultiplier[Set multiplier to 1000]
+ChangeMultiplier-->TripletScore[Add i*multiplier to rollScore]
+IsOne-- No -->TripletScore
+TripletScore-->SubRollDice["Subtract three from diceRolls[i]"]
+SubRollDice-->Sub3Available[Subtract three from availableDice]
+Sub3Available-->AddOne["Add 100*diceRolls[1] to rollScore"]
 AddOne-->ScoreOne["Subtract diceRolls[1] from availableDice"]
 ScoreOne-->AddFive["Add 50*diceRolls[5] to rollScore"]
 AddFive-->ScoreFive["Subtract diceRolls[5] from availableDice"]
-ScoreFive-->Out[/Output Player curPlayer + 1<br/>rollScore/]
-
-ScoreLoop-->IsTriplet{"diceRolls[i] >= 3"}
-IsTriplet-- Yes -->TripletScore[Add i*100 to rollScore]
-TripletScore-->SubRollDice["Subtract three from diceRolls[i]"]
-SubRollDice-->Sub3Available[Subtract three from availableDice]
-Sub3Available-->InI
-IsTriplet-- No -->InI[Increment i]
+ScoreFive-->InI[Increment i]
+IsTriplet-- No -->AddOne
 InI-->ScoreLoop
 
 %% TurnLoop
@@ -68,7 +82,8 @@ AvailableDiceZero-- Yes -->ReAvailableDice[Set availableDice to numGameDice]
 ReAvailableDice-->OutReroll[/"Output Player curPlayer + 1,<br/>availableDice",<br/> score on all dice!/]
 OutReroll-->OutputRollScore[/"Output Player curPlayer + 1,<br/> scorePlayers[curPlayer]"/]
 AvailableDiceZero-- No -->OutTurn[/"Output Player curPlayer + 1,<br/>availableDice,<br/> Roll Again?"/]
-OutTurn-->RollAgain{RollAgain?}
+OutTurn-->Answer[/Input Answer/]
+Answer-->RollAgain{RollAgain?}
 RollScoreGZero-- No -->TurnScoreZero[Set turnScore to zero]
 TurnScoreZero-->RAvailableDice[Set availableDice to numGameDice]
 RAvailableDice-->NoScore[/Output Player curPlayer + 1<br/>turn score is zero!/]
@@ -84,7 +99,7 @@ TurnLoop-- Yes -->PressToRoll[/"Output Press any key to roll dice!"/]
 PressToRoll-->InKeyRoll[/Input Read key/]
 InKeyRoll-->CreateRollScore[Create int rollScore,<br/>set value to zero]
 CreateRollScore[Create int rollScore,<br/>set value to zero]
-CreateRollScore-->CreateDiceRolls[Create int array diceRolls,<br/>set size to numGameDice]
+CreateRollScore-->CreateDiceRolls[Create int array diceRolls,<br/>set size to 7]
 CreateDiceRolls-->CreateI[Create int i, set to zero]
 CreateI-->RollLoop{i < availableDice}
 RollLoop-- Yes -->Roll[Generate int randomNumber 1-6]
@@ -112,25 +127,36 @@ Winner-->GameLoopConnector
 classDef newNode stroke:green,stroke-width:5px
 classDef modNode stroke:blue,stroke-width:5px
 
-%%class OutPrevTurnScore,IsTurnScoreGZero,KeepTurnScore,Keep newNode
+class CreateDiceRolls,AddToList,CreateILoop,ScoreLoop,IsTriplet,CreateMultiplier,IsOne,ChangeMultiplier,TripletScore,SubRollDice,Sub3Available,ScoreOne,ScoreFive newNode
 
-%%class  modNode
+class AddOne,AddFive modNode
 
 ```
 
 ## Usage
 Utgå från er tidigare lösning och lägg till de nya funktionerna med hjälp av flödesschemat. 
 * Nya noder är markerade med grön färg.
+* Modifierade noder är markerade med blå färg.
 
 ### Tip
-Glöm inte att hantera antalet tillgängliga tärningar. 
-* Skapa en int-array och döp den till *diceRolls* och sätt storleken till 5.
-* När en tärning slås lägger ni till den i *diceRolls* istället för att lägga till poäng. Genom att addera ett på platsen i *diceRolls* som tärningen visar kan vi räkna hur många tärningar som fått ett visst värde.
-* Loopa sedan igenom *diceRolls* för att leta efter triss!
-* Addera poängen för trissen till *rollScore*, subtrahera sedan tre från respektive plats i *diceRolls*.
-* Efter loopen adderar ni poängen för ettor och femmor till *rollScore*. 
+* För att hålla koll på hur många tärningar som visar ett visst värde gör vi en array med sju platser. Index för listan motsvara tärningens värde. För varje slagen tärning använder vi tärningens värde som index i listan och adderar 1 på den platsen. Index noll i listan kommer inte att användas.
+* Vi kan loopa igenom listan och kolla om någon plats har värde 3 eller större, i sådana fall har vi hittat en triss. 
+Vär vi delar ut poäng för en triss får vi inte glömma att ta subtrahera *availableDice* och värdet på den platsen i listan med tre.
+* Efter vi kollat triss kan vi kolla hur många ettor och femmor som finns i listan.  
+* Om trissen är i ettor eller femmor så ska spelaren inte få de vanliga 50/100 poängen för tärningarna.
 
-Gör en ny loop efter loopen som slår tärningarna
+Exempel:  
+Tärningsslag: 6, 4, 4, 5 4
+
+| Index | Värde |
+|---|---|
+| 0 | 0 | 
+| 1 | 0 | 
+| 2 | 0 | 
+| 3 | 0 | 
+| 4 | 3 | 
+| 5 | 1 | 
+| 6 | 1 | 
 
 ## Known issues
 * Om användaren matar in ett ogiltigt värde för antal spelare (t.ex. en sträng eller ett negativt tal) kommer programmet att krascha. 

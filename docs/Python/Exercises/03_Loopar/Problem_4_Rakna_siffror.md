@@ -33,4 +33,4 @@ Skriv ut talen från N till 0, ett tal per rad.
 
 ### Förklaring
 
-Använd en for-loop som går baklänges med hjälp av `reverse()` börjar vid N + 1 och fortsätter till och med 0. Tänk på att `range()`behöver stå innanför parenteserna i reverse.
+Använd en for-loop som går baklänges med hjälp av `reversed()` börjar vid N + 1 och fortsätter till och med 0. Tänk på att `range()`behöver stå innanför parenteserna i reverse.
