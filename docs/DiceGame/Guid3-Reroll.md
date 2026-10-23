@@ -38,7 +38,8 @@ CreateTurnActive-->TurnLoop{turnActive?}
 
 
 %% TurnLoop
-RollLoop-- no -->Out[/Output Player curPlayer + 1<br/>rollScore/]
+RollLoop-- no -->SubAv[Subtract scoreDice from availableDice]
+SubAv-->Out[/Output Player curPlayer + 1<br/>rollScore/]
 Out-->RollScoreGZero{rollScore > 0}
 RollScoreGZero-- Yes -->RollToTurnScore[Add rollScore to turnScore]
 RollToTurnScore-->OTurnScore[/Output Player curPlayer + 1,<br/>turnScore/]
@@ -48,7 +49,7 @@ RollScoreGZero-- No -->TurnScoreZero[Set turnScore to zero]
 TurnScoreZero-->RAvailableDice[Set availableDice to numGameDice]
 RAvailableDice-->NoScore[/Output Player curPlayer + 1<br/>turn score is zero!/]
 NoScore-->TurnLoopFalse[Set turnActive to false]
-RollAgain-- Yes -->OutputRollScore
+RollAgain-- Yes -->OutputRollScore[/"Output Player curPlayer + 1,<br/> scorePlayers[curPlayer]"/]
 TurnLoopFalse-->OutputRollScore
 RollAgain-- No -->TurnToPlayerScore["Add turnScore to<br/>scorePlayers[curPlayer]"]
 TurnToPlayerScore-->TurnLoopFalse
@@ -58,8 +59,8 @@ OutputRollScore-->TurnLoop
 TurnLoop-- Yes -->PressToRoll[/"Output Press any key to roll dice!"/]
 PressToRoll-->InKeyRoll[/Input Read key/]
 InKeyRoll-->CreateRollScore[Create int rollScore,<br/>set value to zero]
-CreateRollScore[Create int rollScore,<br/>set value to zero]
-CreateRollScore-->CreateI[Create int i, set to zero]
+CreateRollScore-->CreateScoreDice[Create scoreDice,<br/>set to zero]
+CreateScoreDice-->CreateI[Create int i, set to zero]
 CreateI-->RollLoop{i < availableDice}
 RollLoop-- Yes -->Roll[Generate randomNumber 1-6]
 Roll-->OutNumber[/Output randomNumber/]
@@ -67,8 +68,8 @@ OutNumber-->Score{Score?}
 Score-- 1 -->One[Add 100 to rollScore]
 Score-- 5 -->Five[Add 50 to rollScore]
 Score-- 2,3,4,6 -->IncrementI[Increment i]
-One & Five -->DecrementAvailable[Decrement availableDice]
-DecrementAvailable-->IncrementI
+One & Five -->IncrementScoreDice[Increment scoreDice]
+IncrementScoreDice-->IncrementI
 IncrementI -->RollLoop
 
 %% Change player

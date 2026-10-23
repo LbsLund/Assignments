@@ -55,8 +55,8 @@ CreateTurnActive-->TurnLoop{turnActive?}
 %% ScoreLoop
 RollLoop-- no -->CreateILoop[Create i,<br/>set to zero]
 CreateILoop-->ScoreLoop{i < numGameDice}
-ScoreLoop-- NO -->Out[/Output Player curPlayer + 1<br/>rollScore/]
-
+ScoreLoop-- NO -->SubAv[Subtract scoreDice from availableDice]
+SubAv-->Out[/Output Player curPlayer + 1<br/>rollScore/]
 ScoreLoop-- Yes -->IsTriplet{"diceRolls[i] >= 3"}
 IsTriplet-- Yes -->CreateMultiplier[Create int multiplier,<br/>set to 100]
 CreateMultiplier-->IsOne{i == 1}
@@ -64,11 +64,11 @@ IsOne-- Yes -->ChangeMultiplier[Set multiplier to 1000]
 ChangeMultiplier-->TripletScore[Add i*multiplier to rollScore]
 IsOne-- No -->TripletScore
 TripletScore-->SubRollDice["Subtract three from diceRolls[i]"]
-SubRollDice-->Sub3Available[Subtract three from availableDice]
-Sub3Available-->AddOne["Add 100*diceRolls[1] to rollScore"]
-AddOne-->ScoreOne["Subtract diceRolls[1] from availableDice"]
+SubRollDice-->Add3ScoreDice[Add three to scoreDice]
+Add3ScoreDice-->AddOne["Add 100*diceRolls[1] to rollScore"]
+AddOne-->ScoreOne["Add diceRolls[1] to scoreDice"]
 ScoreOne-->AddFive["Add 50*diceRolls[5] to rollScore"]
-AddFive-->ScoreFive["Subtract diceRolls[5] from availableDice"]
+AddFive-->ScoreFive["Add diceRolls[5] to scoreDice"]
 ScoreFive-->InI[Increment i]
 IsTriplet-- No -->AddOne
 InI-->ScoreLoop
@@ -98,9 +98,9 @@ OutputRollScore-->TurnLoop
 TurnLoop-- Yes -->PressToRoll[/"Output Press any key to roll dice!"/]
 PressToRoll-->InKeyRoll[/Input Read key/]
 InKeyRoll-->CreateRollScore[Create int rollScore,<br/>set value to zero]
-CreateRollScore[Create int rollScore,<br/>set value to zero]
 CreateRollScore-->CreateDiceRolls[Create int array diceRolls,<br/>set size to 7]
-CreateDiceRolls-->CreateI[Create int i, set to zero]
+CreateDiceRolls-->CreateScoreDice[Create scoreDice,<br/>set to zero]
+CreateScoreDice-->CreateI[Create int i, set to zero]
 CreateI-->RollLoop{i < availableDice}
 RollLoop-- Yes -->Roll[Generate int randomNumber 1-6]
 Roll-->AddToList["Increment diceRolls[randomNumber]"]

@@ -4,6 +4,15 @@ Guid för implementation av tärningar i tärningsspelet
 ## Overview
 Flödesschemat visar en lösning för att implementera ett system som hantera tärningsslag och poängberäkning. Varje runda slås fem tärningar och poängen beräknas utifrån tärningarnas värden. En slagen etta ger 100 poäng och en femma ger 50 poäng. Alla andra tärningsvärden ger inga poäng. Poängen för rundan läggs till spelarens totala poäng och när en spelare når 1000 poäng vinner den spelaren spelet.
 
+| Slag:	| Poäng|
+|---|---|
+| 1 | 100 |
+| 2 | 0 |
+| 3 | 0 |
+| 4 | 0 |
+| 5 | 50 |
+| 6 | 0 |
+
 ### Features
 * Slå fem tärningar
 * Ge spelaren poäng baserat på tärningarnas värden
