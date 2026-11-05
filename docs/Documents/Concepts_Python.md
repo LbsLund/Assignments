@@ -1,4 +1,5 @@
-# Programmeringsbegrepp i Python
+# Begrepp i Python
+Grundläggande begrepp för programmering i Python.
 
 ## Datatyp
 
