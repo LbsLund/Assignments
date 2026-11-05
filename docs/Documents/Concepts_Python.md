@@ -9,7 +9,7 @@ En **datatyp** beskriver vilken sorts värde något är.
 | **int**| `17` | Heltal |
 | **float** | `21.5` | Decimaltal |
 | **str** | `"Hello"` | Text |
-| **bool** | `True` | Sant/Falskt |
+| **bool** | `True` | Sant eller Falskt |
 | **list** | `[ "apple", "banana" ]` | En samling av värden |
 
 ## Variabel
@@ -27,6 +27,7 @@ print(points)  # 15
 
 En operator utför en operation eller jämför värden.
 
+---
 **Jämförelseoperatorer** jämför värden och ger `True` eller `False`.
 
 | Operator | Beskrivning | 
@@ -43,6 +44,7 @@ age = 17
 print(age >= 18)  # False
 print(age == 17)  # True
 ```
+
 ---
 **Aritmetiska operatorer** utför matematiska operationer på värden.
 
@@ -63,6 +65,7 @@ print(number)  # 6
 remainder = 5 % 2
 print(remainder)   # 1
 ```
+
 ---
 **Tilldelningsoperatorer** används för att spara ett värde i en variabel.
 
@@ -82,6 +85,7 @@ points = 10
 points += 5  # points = points + 5
 print(points)  # 15
 ```
+
 ---
 **Logiska operatorer** används för att kombinera villkor.
 
@@ -96,6 +100,7 @@ age = 17
 isTeenager = age >= 13 and age < 20
 print(isTeenager)  # True  
 ```
+
 ---
 **Medlemsoperatorer** används för att kontrollera om ett värde finns i en datastruktur.
 
@@ -109,6 +114,7 @@ fruits = ["apple", "banana", "pear"]
 print("apple" in fruits)  # True
 print("orange" not in fruits)  # True
 ```
+
 ---
 **Identitetsoperatorer** jämför om två variabler hänvisar till samma objekt.
 
