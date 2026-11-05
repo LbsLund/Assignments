@@ -2,18 +2,15 @@
 
 ## Datatyp
 
-En **datatyp** beskriver vilken sorts värde något är. Vanliga datatyper
-är `int` (heltal), `float` (decimaltal), `str` (text), `bool`
-(sant/falskt) och `list` (samling av värden).
+En **datatyp** beskriver vilken sorts värde något är.
 
-|Datatyper|Värde|Beskrivning|
-|--|--|--|
-|int|17|Heltal|
-|float|21.5|Decimaltal|
-|str|"Hello"|Text|
-|bool|True|Sant/Falskt|
-|list|[ "apple", "banana" ]|En samling av värden|
-
+| Datatyp | Värde | Beskrivning |
+| -- | -- | -- |
+| **int**| `17` | Heltal |
+| **float** | `21.5` | Decimaltal |
+| **str** | `"Hello"` | Text |
+| **bool** | `True` | Sant/Falskt |
+| **list** | `[ "apple", "banana" ]` | En samling av värden |
 
 ## Variabel
 
@@ -31,8 +28,9 @@ print(points)  # 15
 En operator utför en operation eller jämför värden.
 
 **Jämförelseoperatorer** jämför värden och ger `True` eller `False`.
-|Operator|Beskrivning| 
-|--|--|
+
+| Operator | Beskrivning | 
+| -- | -- |
 | == | lika med |
 | != | inte lika med |
 | < | mindre |
@@ -47,12 +45,13 @@ print(age == 17)  # True
 ```
 ---
 **Aritmetiska operatorer** utför matematiska operationer på värden.
-|Operator|Beskrivning| 
-|--|--|
+
+| Operator | Beskrivning | 
+| -- | -- |
 | + | adderar två värden |
 | - | subtraherar ett värde från ett annat |
 | * | multiplicerar två värden |
-| / | dividerar ett värde med ett annat och returnerar ett decimaltal|
+| / | dividerar ett värde med ett annat och returnerar ett decimaltal |
 | // | dividerar ett värde med ett annat och returnerar ett heltal |
 | ** | beräknar ett värde upphöjt till ett annat |
 | % | beräknar resten vid division av ett värde med ett annat |
@@ -67,8 +66,8 @@ print(remainder)   # 1
 ---
 **Tilldelningsoperatorer** används för att spara ett värde i en variabel.
 
-|Operator|Beskrivning| 
-|--|--|
+| Operator | Beskrivning |
+| -- | -- |
 | = | tilldelar ett värde till en variabel |
 | += | adderar ett värde till en variabel och sparar resultatet i samma variabel |
 | -= | subtraherar ett värde från en variabel och sparar resultatet i variabeln |
@@ -85,8 +84,9 @@ print(points)  # 15
 ```
 ---
 **Logiska operatorer** används för att kombinera villkor.
-|Operator|Beskrivning| 
-|--|--|
+
+| Operator | Beskrivning |
+| -- | -- |
 | and | sant om båda villkoren är sanna |
 | or | sant om minst ett av villkoren är sant |
 | not | sant om villkoret är falskt |
@@ -99,8 +99,8 @@ print(isTeenager)  # True
 ---
 **Medlemsoperatorer** används för att kontrollera om ett värde finns i en datastruktur.
 
-|Operator|Beskrivning| 
-|--|--|
+| Operator | Beskrivning | 
+| -- | -- |
 | in | sant om värdet finns i datastrukturen |
 | not in | sant om värdet inte finns i datastrukturen |
 
@@ -111,8 +111,9 @@ print("orange" not in fruits)  # True
 ```
 ---
 **Identitetsoperatorer** jämför om två variabler hänvisar till samma objekt.
-|Operator|Beskrivning| 
-|--|--|
+
+| Operator | Beskrivning |
+| -- | -- |
 | is | sant om variablerna hänvisar till samma objekt |
 | is not | sant om variablerna inte hänvisar till samma objekt |
 
