@@ -28,10 +28,34 @@ print(points)  # 15
 
 ## Operator
 
-En **operator** utför en operation eller jämförelse på värden.
+En operator utför en operation eller jämför värden.
 
-Aritmetiska operatorer: `+`, `-`, `*`, `/`, `//` (heltalsdivision) och
-`%` (modulo - rest vid division).
+**Jämförelseoperatorer** jämför värden och ger `True` eller `False`.
+|Operator|Beskrivning| 
+|--|--|
+| == | lika med |
+| != | inte lika med |
+| < | mindre |
+| > | större |
+| <= | mindre eller lika med |
+| >= | större eller lika med |
+
+``` python
+age = 17
+print(age >= 18)  # False
+print(age == 17)  # True
+```
+---
+**Aritmetiska operatorer** utför matematiska operationer på värden.
+|Operator|Beskrivning| 
+|--|--|
+| + | adderar två värden |
+| - | subtraherar ett värde från ett annat |
+| * | multiplicerar två värden |
+| / | dividerar ett värde med ett annat och returnerar ett decimaltal|
+| // | dividerar ett värde med ett annat och returnerar ett heltal |
+| ** | beräknar ett värde upphöjt till ett annat |
+| % | beräknar resten vid division av ett värde med ett annat |
 
 ``` python
 number = 4 + 2
@@ -40,20 +64,70 @@ print(number)  # 6
 remainder = 5 % 2
 print(remainder)   # 1
 ```
+---
+**Tilldelningsoperatorer** används för att spara ett värde i en variabel.
 
-Jämförelseoperatorer jämför värden och ger `True` eller `False`, till
-exempel `==`, `!=`, `<`, `>`, `<=`, `>=`, `is` och `is not`.
+|Operator|Beskrivning| 
+|--|--|
+| = | tilldelar ett värde till en variabel |
+| += | adderar ett värde till en variabel och sparar resultatet i samma variabel |
+| -= | subtraherar ett värde från en variabel och sparar resultatet i variabeln |
+| *= | multiplicerar ett värde med en variabel och sparar resultatet i variabeln |
+| /= | dividerar en variabel med ett värde och sparar resultatet i variabeln |
+| //= | dividerar en variabel med ett värde och sparar heltalsresultatet i variabeln |
+| **= | beräknar ett värde upphöjt till en variabel och sparar resultatet i variabeln |
+| %= | beräknar resten vid division av en variabel med ett värde och sparar resultatet i variabeln |
+
+``` python
+points = 10
+points += 5  # points = points + 5
+print(points)  # 15
+```
+---
+**Logiska operatorer** används för att kombinera villkor.
+|Operator|Beskrivning| 
+|--|--|
+| and | sant om båda villkoren är sanna |
+| or | sant om minst ett av villkoren är sant |
+| not | sant om villkoret är falskt |
 
 ``` python
 age = 17
-print(age >= 18)  # False
-print(age == 17)  # True
+isTeenager = age >= 13 and age < 20
+print(isTeenager)  # True  
+```
+---
+**Medlemsoperatorer** används för att kontrollera om ett värde finns i en datastruktur.
+
+|Operator|Beskrivning| 
+|--|--|
+| in | sant om värdet finns i datastrukturen |
+| not in | sant om värdet inte finns i datastrukturen |
+
+``` python
+fruits = ["apple", "banana", "pear"]
+print("apple" in fruits)  # True
+print("orange" not in fruits)  # True
+```
+---
+**Identitetsoperatorer** jämför om två variabler hänvisar till samma objekt.
+|Operator|Beskrivning| 
+|--|--|
+| is | sant om variablerna hänvisar till samma objekt |
+| is not | sant om variablerna inte hänvisar till samma objekt |
+
+```python
+a = [1, 2, 3]
+b = a
+print(a is b)  # True
+c = [1, 2, 3]
+print(a is c)  # False
 ```
 
 ## Selektion
 
 **Selektion** innebär att programmet väljer vilka instruktioner som ska
-köras beroende på ett villkor. I Python används `if`, `elif` och `else`.
+köras beroende på ett villkor. Selektion skapas med hjälp av en sats. I Python används satserna `if`, `elif` och `else`.
 
 ``` python
 age = 17
@@ -113,10 +187,10 @@ word = "Python"
 print(word[1])     # y
 ```
 
-## Loopar och iteration
+## Loopar och iterationer
 
 **Iteration** betyder att instruktioner upprepas. **Loopar** används för att
-genomföra iterationer.
+genomföra iterationer. En loop skapas med hjälp av en sats. Satser för loopar i Python är `for` och `while`.
 
 En `for`-loop kan upprepa instruktioner ett bestämt antal gånger:
 
@@ -134,7 +208,6 @@ while counting:
     count += 1
     if count >= 3:
         counting = False
-
 ```
 
 ## Funktion och metod
