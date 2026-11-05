@@ -54,11 +54,7 @@ CreateTurnActive-->TurnLoop{turnActive?}
 %% ScoreLoop
 RollLoop-- no -->CreateILoop[Create i,<br/>set to one]
 CreateILoop-->ScoreLoop{i < diceRolls.length}
-ScoreLoop-- NO -->AddOne["Add 100*diceRolls[1] to rollScore"]
-AddOne-->ScoreOne["Add diceRolls[1] to scoreDice"]
-ScoreOne-->AddFive["Add 50*diceRolls[5] to rollScore"]
-AddFive-->ScoreFive["Add diceRolls[5] to scoreDice"]
-ScoreFive-->SubAv[Subtract scoreDice from availableDice]
+ScoreLoop-- NO -->SubAv[Subtract scoreDice from availableDice]
 SubAv-->Out[/Output Player curPlayer + 1<br/>rollScore/]
 ScoreLoop-- Yes -->IsTriplet{"diceRolls[i] >= 3"}
 IsTriplet-- Yes -->CreateMultiplier[Create int multiplier,<br/>set to 100]
@@ -69,7 +65,15 @@ IsOne-- No -->TripletScore
 TripletScore-->SubRollDice["Subtract three from diceRolls[i]"]
 SubRollDice-->Add3ScoreDice[Add three to scoreDice]
 Add3ScoreDice-->InI[Increment i]
-IsTriplet-- No -->InI
+IsTriplet-- No -->Is1{"i == 1"}
+Is1-- Yes -->AddOne["Add 100*diceRolls[1] to rollScore"]
+AddOne-->ScoreOne["Add diceRolls[1] to scoreDice"]
+ScoreOne-->Is5{"i == 5"}
+Is1-- No -->Is5
+Is5-- Yes -->AddFive["Add 50*diceRolls[5] to rollScore"]
+AddFive-->ScoreFive["Add diceRolls[5] to scoreDice"]
+ScoreFive-->InI
+Is5-- No -->InI
 InI-->ScoreLoop
 
 %% TurnLoop
