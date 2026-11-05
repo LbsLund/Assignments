@@ -125,7 +125,7 @@ Winner-->GameLoopConnector
 classDef newNode stroke:green,stroke-width:5px
 classDef modNode stroke:blue,stroke-width:5px
 
-class CreateDiceRolls,AddToList,CreateILoop,ScoreLoop,IsTriplet,CreateMultiplier,IsOne,ChangeMultiplier,TripletScore,SubRollDice,Sub3Available,ScoreOne,ScoreFive,Add3ScoreDice,InI newNode
+class CreateDiceRolls,AddToList,CreateILoop,ScoreLoop,IsTriplet,CreateMultiplier,IsOne,ChangeMultiplier,TripletScore,SubRollDice,Sub3Available,ScoreOne,Add3ScoreDice,InI,IsOneOrFive newNode
 
 class AddOne,AddFive modNode
 
