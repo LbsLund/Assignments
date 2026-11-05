@@ -2,20 +2,20 @@
 
 ## Datatyp
 
-En **datatyp** beskriver vilken sorts värde något är.
+En **datatyp** beskriver vilken typ ett värde har.
 
 | Datatyp | Värde | Beskrivning |
 | -- | -- | -- |
-| **int**| `17` | Heltal |
-| **float** | `21.5` | Decimaltal |
-| **str** | `"Hello"` | Text |
-| **bool** | `True` | Sant eller Falskt |
-| **list** | `[ "apple", "banana" ]` | En samling av värden |
+| int| `17` | Heltal |
+| float | `21.5` | Decimaltal |
+| str | `"Hello"` | Text |
+| bool | `True` | Sant eller Falskt |
+| list | `[ "apple", "banana" ]` | En samling av värden |
 
 ## Variabel
 
 En **variabel** är en typ av behållare som används för att spara och komma åt ett
-värde. Värden kan ändras under programmets gång.
+värde. Värden som sparats i variabler kan ändras under programmets gång.
 
 ``` python
 points = 10
@@ -25,7 +25,7 @@ print(points)  # 15
 
 ## Operator
 
-En operator utför en operation eller jämför värden.
+En **operator** utför en operation eller jämför värden.
 
 ---
 **Jämförelseoperatorer** jämför värden och ger `True` eller `False`.
@@ -136,6 +136,12 @@ print(a is c)  # False
 **Selektion** innebär att programmet väljer vilka instruktioner som ska
 köras beroende på ett villkor. Selektion skapas med hjälp av en sats. I Python används satserna `if`, `elif` och `else`.
 
+| Sats | Beskrivning | 
+| -- | -- |
+| if | kör instruktioner om villkoret är sant |
+| elif | kör instruktioner om villkoret är sant och tidigare villkor var falskt |
+| else | kör instruktioner om alla tidigare villkor var falska |
+
 ``` python
 age = 17
 
@@ -146,10 +152,6 @@ elif age >= 13:
 else:
     print("Child")
 ```
-
--   `if` testar det första villkoret.
--   `elif` testar ett nytt villkor om tidigare villkor inte stämde.
--   `else` körs om inget tidigare villkor stämde.
 
 ## Indentering
 
@@ -166,16 +168,21 @@ if age >= 18:
 print("The program continues.")
 ```
 
-De två indenterade raderna tillhör `if`-satsen. Python använder normalt
+Den indenterade raden tillhör `if`-satsen. Python använder normalt
 fyra mellanslag per indenteringsnivå.
 
 ## Datastruktur
 
 En **datastruktur** är ett sätt att organisera och lagra flera värden
-tillsammans. Datastrukturer skapar samlingarEn lista (`list`) är en vanlig datastruktur.
+tillsammans. Datastrukturer skapar samlingar.
+
+| Datastruktur | Beskrivning | 
+| -- | -- |
+| list | en samling av värden där index kan användas för att komma åt ett specifikt värde i samlingen |
+| dict | en samling av nyckel-värde-par där nyckeln används för att komma åt ett specifikt värde i samlingen |
 
 ``` python
-fruits = ["apple", "banana", "pear"]
+fruits = ["apple", "banana", "pear"] # list
 print(fruits)
 print(fruits[0])  # apple
 ```
@@ -197,17 +204,19 @@ print(word[1])     # y
 ## Loopar och iterationer
 
 **Iteration** betyder att instruktioner upprepas. **Loopar** används för att
-genomföra iterationer. En loop skapas med hjälp av en sats. Satser för loopar i Python är `for` och `while`.
+genomföra iterationer. En loop skapas med hjälp av en sats. 
 
-En `for`-loop kan upprepa instruktioner ett bestämt antal gånger:
+| Sats | Beskrivning | 
+| -- | -- |
+| for | upprepar instruktioner ett bestämt antal gånger |
+| while | upprepar instruktioner så länge ett villkor är sant |
 
+for:
 ``` python
 for number in range(3):
     print(number)
 ```
-
-En `while`-loop upprepar instruktioner så länge ett villkor är sant:
-
+while:
 ``` python
 counting = True
 count = 0 
@@ -219,17 +228,19 @@ while counting:
 
 ## Funktion och metod
 
-En **funktion** utför en specifik instruktion. Den anropas med sitt namn och parenteser efter. Funktionen kan ta emot värden som argument i parenteserna och returnera ett värde.
+En **funktion** utför en specifik instruktion. Den anropas med sitt namn med parenteser efter. Funktionen kan ta emot värden som argument i parenteserna och returnera ett värde.
+
+| Namn |Beskrivning| 
+| -- | -- |
+| Funktion | en instruktion som kan anropas med sitt namn och parenteser |
+| Metod | en funktion som tillhör ett objekt och anropas med punktnotation |
 
 Funktionen `print()` skriver ut värden på skärmen.
-
 ``` python
 print("Hello, world!")
 ```
-En **metod** är en funktion som tillhör ett objekt, till exempel en sträng eller lista. Metoder anropas med punktnotation.
 
 Metoden `split()` tillhör strängar och delar upp en sträng till en lista av ord:
-
 ``` python
 text = "apple banana pear"
 fruits = text.split()
