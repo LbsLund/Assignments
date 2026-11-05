@@ -39,6 +39,7 @@ Output-->End([End])
 ## Selektion i flödesschema
 Selektion i flödesschema representeras av en **decision-nod** som har två eller flera utgångar. Decision-noden används för att visa att programmet kan ta olika vägar beroende på ett villkor. Texten i pilarna 
 
+---
 Exempel på ett flödesschema som illustrerar en **if-sats**, om villkoret är sant körs processen:
 ``` mermaid
 graph TD
@@ -48,6 +49,7 @@ Decision-->|No|End([End])
 Process-->End
 ```
 
+---
 Exempel på ett flödesschema som illustrerar en **if och else-sats**, om villkoret är sant körs den första processen, annars körs den andra processen:
 ``` mermaid
 graph TD
@@ -58,6 +60,7 @@ Process1-->End([End])
 Process2-->End
 ```
 
+---
 Exempel på ett flödesschema som illustrerar en **if och elif-sats**, om villkoret är sant körs den första processen, annars kontrolleras nästa villkor och om det är sant körs den andra processen:
 ``` mermaid
 graph TD
@@ -69,6 +72,7 @@ Process1-->End
 Process2-->End
 ```
 
+---
 Exempel på ett flödesschema som illustrerar en **if, elif och else-sats**, om villkoret är sant körs den första processen, annars kontrolleras nästa villkor och om det är sant körs den andra processen, annars körs den tredje processen:
 ``` mermaid
 graph TD

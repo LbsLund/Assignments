@@ -2,7 +2,7 @@
 Guid för implementation av lösning för hantera triss i tärningsspelet
 
 ## Overview
-Flödesschemat visar en lösning för att hantera triss i tärningsspelet.
+Flödesschemat visar en lösning för att hantera triss i tärningsspelet. Tre tärningar som visar samma värde kallas för en triss. Poäng delas ut enligt tabellen nedan. Tärningar som ingår i en triss får inte ge poäng för 1:or och 5:or.
 
 | Triss i: | Poäng |
 |---|---|
@@ -51,11 +51,14 @@ ResetTurnScore-->ResetAvailableDice[Set availableDice to numGameDice]
 ResetAvailableDice-->CreateTurnActive
 CreateTurnActive-->TurnLoop{turnActive?}
 
-
 %% ScoreLoop
-RollLoop-- no -->CreateILoop[Create i,<br/>set to zero]
-CreateILoop-->ScoreLoop{i < numGameDice}
-ScoreLoop-- NO -->SubAv[Subtract scoreDice from availableDice]
+RollLoop-- no -->CreateILoop[Create i,<br/>set to one]
+CreateILoop-->ScoreLoop{i < diceRolls.length}
+ScoreLoop-- NO -->AddOne["Add 100*diceRolls[1] to rollScore"]
+AddOne-->ScoreOne["Add diceRolls[1] to scoreDice"]
+ScoreOne-->AddFive["Add 50*diceRolls[5] to rollScore"]
+AddFive-->ScoreFive["Add diceRolls[5] to scoreDice"]
+ScoreFive-->SubAv[Subtract scoreDice from availableDice]
 SubAv-->Out[/Output Player curPlayer + 1<br/>rollScore/]
 ScoreLoop-- Yes -->IsTriplet{"diceRolls[i] >= 3"}
 IsTriplet-- Yes -->CreateMultiplier[Create int multiplier,<br/>set to 100]
@@ -65,12 +68,8 @@ ChangeMultiplier-->TripletScore[Add i*multiplier to rollScore]
 IsOne-- No -->TripletScore
 TripletScore-->SubRollDice["Subtract three from diceRolls[i]"]
 SubRollDice-->Add3ScoreDice[Add three to scoreDice]
-Add3ScoreDice-->AddOne["Add 100*diceRolls[1] to rollScore"]
-AddOne-->ScoreOne["Add diceRolls[1] to scoreDice"]
-ScoreOne-->AddFive["Add 50*diceRolls[5] to rollScore"]
-AddFive-->ScoreFive["Add diceRolls[5] to scoreDice"]
-ScoreFive-->InI[Increment i]
-IsTriplet-- No -->AddOne
+Add3ScoreDice-->InI[Increment i]
+IsTriplet-- No -->InI
 InI-->ScoreLoop
 
 %% TurnLoop
@@ -127,7 +126,7 @@ Winner-->GameLoopConnector
 classDef newNode stroke:green,stroke-width:5px
 classDef modNode stroke:blue,stroke-width:5px
 
-class CreateDiceRolls,AddToList,CreateILoop,ScoreLoop,IsTriplet,CreateMultiplier,IsOne,ChangeMultiplier,TripletScore,SubRollDice,Sub3Available,ScoreOne,ScoreFive newNode
+class CreateDiceRolls,AddToList,CreateILoop,ScoreLoop,IsTriplet,CreateMultiplier,IsOne,ChangeMultiplier,TripletScore,SubRollDice,Sub3Available,ScoreOne,ScoreFive,Add3ScoreDice,InI newNode
 
 class AddOne,AddFive modNode
 
@@ -141,11 +140,12 @@ Utgå från er tidigare lösning och lägg till de nya funktionerna med hjälp a
 ### Tip
 * För att hålla koll på hur många tärningar som visar ett visst värde gör vi en array med sju platser. Index för listan motsvara tärningens värde. För varje slagen tärning använder vi tärningens värde som index i listan och adderar 1 på den platsen. Index noll i listan kommer inte att användas.
 * Vi kan loopa igenom listan och kolla om någon plats har värde 3 eller större, i sådana fall har vi hittat en triss. 
-Vär vi delar ut poäng för en triss får vi inte glömma att ta subtrahera *availableDice* och värdet på den platsen i listan med tre.
-* Efter vi kollat triss kan vi kolla hur många ettor och femmor som finns i listan.  
+* När vi delar ut poäng för en triss får vi inte glömma att ta subtrahera *availableDice* och värdet på den platsen i listan med tre.
+* Efter vi kollat efter triss kan vi kolla hur många ettor och femmor som finns i listan.  
 * Om trissen är i ettor eller femmor så ska spelaren inte få de vanliga 50/100 poängen för tärningarna.
 
-Exempel:  
+Exempel på hur listan kan se ut efter ett tärningsslag med 5 tärningar. I detta exempel har spelaren slagit en triss i fyror och en femma:
+
 Tärningsslag: 6, 4, 4, 5 4
 
 | Index | Värde |
