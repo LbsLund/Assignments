@@ -57,23 +57,40 @@ CreateSaveActive-->SaveLoop{saveActive?}
 
 
 %% ScoreLoop
-SaveLoop-- No -->SubAv[Subtract scoreDice from availableDice]
+
 SaveLoop-- Yes -->CreateScoreCounter[Create int scoreCounter,<br/>set value to zero]
 CreateScoreCounter-->CreateILoop[Create i,<br/>set to one]
 CreateILoop-->ScoreLoop{i < diceRolls.length}
+SaveLoop-- No -->SubAv[Subtract scoreDice from availableDice]
 
 SubAv-->Out[/Output Player curPlayer + 1<br/>rollScore/]
-ScoreLoop-- No -->SaveLoop
+
 ScoreLoop-- Yes -->CreateMultiplier[Create int multiplier,<br/>set to 1]
+ScoreLoop-- No -->EndSaveLoop{scoreCounter == 0</br>or rollScore > 0}
+EndSaveLoop-- Yes -->SaveLoopFalse[Set saveActive to false]
+EndSaveLoop-- No -->OutSaveNeeded[/Output You need to save</br>at least one score die!/]
+OutSaveNeeded-->ScoreConnector((( )))
+SaveLoopFalse-->ScoreConnector
+ScoreConnector-->SaveLoop
 CreateMultiplier-->IsOne{i == 1}
 IsOne-- Yes -->ChangeMultiplier[Set multiplier to 10]
 ChangeMultiplier-->IsTriplet{"diceRolls[i] >= 3"}
-IsTriplet-- Yes -->TripletScore[Add i*100*multiplier to rollScore]
+IsTriplet-- Yes -->TripletScoreCounter[Increment scoreCounter]
+TripletScoreCounter-->OutSaveTriplets[/Output Save triplets?/]
+OutSaveTriplets-->InSaveTriplets[/Input Answer/]
+InSaveTriplets-->SaveTriplets{Save triplets?}
+SaveTriplets-- Yes -->TripletScore[Add i*100*multiplier to rollScore]
+SaveTriplets-- No -->InI[Increment i]
 IsOne-- No -->IsTriplet
 TripletScore-->Add3ScoreDice[Add three to scoreDice]
-Add3ScoreDice-->InI[Increment i]
-IsTriplet-- No -->IsOneOrFive{"i == 1 || i == 5"}
-IsOneOrFive-- Yes -->AddOne["Add i*10*multiplier*diceRolls[1] to rollScore"]
+Add3ScoreDice-->InI
+IsTriplet-- No -->IsOneOrFive{"i == 1 or i == 5"}
+IsOneOrFive-- Yes -->OneFiveScoreCounter[Increment scoreCounter]
+OneFiveScoreCounter-->OutOneFiveSave[/Output Save score?/]
+OutOneFiveSave-->InOneFiveSave[/Input Answer/]
+InOneFiveSave-->SaveOneFive{Save score?}
+SaveOneFive-- Yes -->AddOne["Add i*10*multiplier*diceRolls[1] to rollScore"]
+SaveOneFive-- No -->InI
 AddOne-->ScoreOne["Add diceRolls[1] to scoreDice"]
 ScoreOne-->InI
 IsOneOrFive-- No -->InI
