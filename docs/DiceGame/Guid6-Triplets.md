@@ -64,9 +64,9 @@ IsTriplet-- Yes -->TripletScore[Add i*100*multiplier to rollScore]
 IsOne-- No -->IsTriplet
 TripletScore-->Add3ScoreDice[Add three to scoreDice]
 Add3ScoreDice-->InI[Increment i]
-IsTriplet-- No -->IsOneOrFive{"i == 1 || i == 5"}
-IsOneOrFive-- Yes -->AddOne["Add i*10*multiplier*diceRolls[1] to rollScore"]
-AddOne-->ScoreOne["Add diceRolls[1] to scoreDice"]
+IsTriplet-- No -->IsOneOrFive{"i == 1 or i == 5"}
+IsOneOrFive-- Yes -->AddOne["Add i*10*multiplier*diceRolls[i] to rollScore"]
+AddOne-->ScoreOne["Add diceRolls[i] to scoreDice"]
 ScoreOne-->InI
 IsOneOrFive-- No -->InI
 InI-->ScoreLoop
