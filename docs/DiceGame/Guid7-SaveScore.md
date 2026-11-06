@@ -1,21 +1,11 @@
-# Dice Game - Guid 6
-Guid för implementation av lösning för hantera triss i tärningsspelet
+# Dice Game - Guid 7
+Guid för implementation av lösning för Välja vilka poäng som ska sparas i tärningsspelet
 
 ## Overview
-Flödesschemat visar en lösning för att hantera triss i tärningsspelet. Tre tärningar som visar samma värde kallas för en triss. Poäng delas ut enligt tabellen nedan. Tärningar som ingår i en triss får inte ge poäng för 1:or och 5:or.
-
-| Triss i: | Poäng |
-|---|---|
-| 1 | 1000 | 
-| 2 | 200 | 
-| 3 | 300 | 
-| 4 | 400 | 
-| 5 | 500 | 
-| 6 | 600 | 
-
+Spelaren ska få möjlighet att välja vilka poäng som ska sparas efter ett tärningsslag. För triss måste alla tre tärningar sparas, för ettor och femmor görs valet för varje individuell tärning. Spelare måste spara minst ett sett av poänggivande tärningar, om inga tärningar sparas får spelaren ett nytt försök att spara poäng. Processen tills spelaren har valt att spara något sätt av poänggivande tärningar.
 
 ### Features
-* Poäng för triss
+* Välja vilka sett av poänggivande tärningar som ska sparas efter ett tärningsslag.
 
 ## Visuals
 
@@ -89,9 +79,9 @@ IsOneOrFive-- Yes -->OneFiveScoreCounter[Increment scoreCounter]
 OneFiveScoreCounter-->OutOneFiveSave[/Output Save score?/]
 OutOneFiveSave-->InOneFiveSave[/Input Answer/]
 InOneFiveSave-->SaveOneFive{Save score?}
-SaveOneFive-- Yes -->AddOne["Add i*10*multiplier*diceRolls[1] to rollScore"]
+SaveOneFive-- Yes -->AddOne["Add i*10*multiplier*diceRolls[i] to rollScore"]
 SaveOneFive-- No -->InI
-AddOne-->ScoreOne["Add diceRolls[1] to scoreDice"]
+AddOne-->ScoreOne["Add diceRolls[i] to scoreDice"]
 ScoreOne-->InI
 IsOneOrFive-- No -->InI
 InI-->ScoreLoop
@@ -150,9 +140,9 @@ Winner-->GameLoopConnector
 classDef newNode stroke:green,stroke-width:5px
 classDef modNode stroke:blue,stroke-width:5px
 
-class CreateDiceRolls,AddToList,CreateILoop,ScoreLoop,IsTriplet,CreateMultiplier,IsOne,ChangeMultiplier,TripletScore,SubRollDice,Sub3Available,ScoreOne,Add3ScoreDice,InI,IsOneOrFive newNode
+class CreateSaveActive,SaveLoop,CreateScoreCounter,EndSaveLoop,SaveLoopFalse,OutSaveNeeded,TripletScoreCounter,OneFiveScoreCounter,OutSaveTriplets,OutOneFiveSave,InSaveTriplets,InOneFiveSave,SaveTriplets,SaveOneFive newNode
 
-class AddOne,AddFive modNode
+%% class AddOne,AddFive modNode
 
 ```
 
@@ -162,25 +152,8 @@ Utgå från er tidigare lösning och lägg till de nya funktionerna med hjälp a
 * Modifierade noder är markerade med blå färg.
 
 ### Tip
-* För att hålla koll på hur många tärningar som visar ett visst värde gör vi en array med sju platser. Index för listan motsvara tärningens värde. För varje slagen tärning använder vi tärningens värde som index i listan och adderar 1 på den platsen. Index noll i listan kommer inte att användas.
-* Vi kan loopa igenom listan och kolla om någon plats har värde 3 eller större, i sådana fall har vi hittat en triss. 
-* När vi delar ut poäng för en triss får vi inte glömma att ta subtrahera *availableDice* och värdet på den platsen i listan med tre.
-* Efter vi kollat efter triss kan vi kolla hur många ettor och femmor som finns i listan.  
-* Om trissen är i ettor eller femmor så ska spelaren inte få de vanliga 50/100 poängen för tärningarna.
-
-Exempel på hur listan kan se ut efter ett tärningsslag med 5 tärningar. I detta exempel har spelaren slagit en triss i fyror och en femma:
-
-Tärningsslag: 6, 4, 4, 5 4
-
-| Index | Värde |
-|---|---|
-| 0 | 0 | 
-| 1 | 0 | 
-| 2 | 0 | 
-| 3 | 0 | 
-| 4 | 3 | 
-| 5 | 1 | 
-| 6 | 1 | 
+* Variabeln *scoreCounter* används för att hålla koll på hur många sett av poänggivande tärningar som spelaren har slått. Om *scoreCounter* är noll när efter loopen som delar ut poäng betyder det att spelaren inte har slagit något sett av poänggivande tärningar och turen går över till nästa spelare. 
+* Om variabeln *scoreCounter* är större än noll och *rollScore* är noll betyder det att spelaren har slagit ett eller flera sett av poänggivande tärningar men inte valt att spara några av dem. I så fall får spelaren ett nytt försök att spara poäng. Processen upprepas tills spelaren har valt att spara något sett av poänggivande tärningar.
 
 ## Known issues
 * Om användaren matar in ett ogiltigt värde för antal spelare (t.ex. en sträng eller ett negativt tal) kommer programmet att krascha. 
