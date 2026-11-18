@@ -11,7 +11,7 @@ Priserna är:
 - 65 år eller äldre: 30 kr
 
 ### Indata
-En heltalsålder.
+​Ett heltal för ålder.
 
 ### Utdata
 Biljettpriset följt av ` kr`, till exempel `30 kr`.
