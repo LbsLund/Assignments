@@ -53,7 +53,7 @@ båda programmen.
 
 ## Uppgift B - Klienten
 1.  Importera socket `import socket`.
-2.  Skapa en socket variabel och döp den till *client* `client = socket.socket())`.
+2.  Skapa en socket variabel och döp den till *client* `client = socket.socket()`.
 3.  Anslut till servern med IP-nummer: *127.0.0.1* och port *5000* `client.connect(("127.0.0.1",5000))`.
 4.  Ta emot meddelande från servern `message = client.recv(4096).decode()`.
 5.  Skriv ut meddelandet med hjälp av `print()`. 
