@@ -9,7 +9,8 @@ Lägg till efter att klienten tagit emot välkomstmeddelandet:
 ```python
 menu = "Start Menu"
 
-while client.fileno() != -1:
+clientActive = False
+while clientActive:
 
     match menu:
 

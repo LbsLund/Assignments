@@ -35,7 +35,8 @@ Servern behöver hålla reda på inloggningsstatus:
 ```python
 loggedIn = False
 
-while client.fileno() != -1:
+clientActive = True
+while clientActive:
 
     request = client.recv(4096).decode()
 
@@ -56,6 +57,7 @@ while client.fileno() != -1:
 
             client.sendall("Disconnected from server".encode())
             client.close()
+            clientActive = False
 
         case _:
 
