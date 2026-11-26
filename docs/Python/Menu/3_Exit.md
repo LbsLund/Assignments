@@ -44,6 +44,7 @@ while clientActive:
         case _:
             
             client.sendall("error".encode())
+            print("Invalid Request:", request, "Logged in:" loggedIn)
 ```
 
 Detta är en förenklad variant. I nästa steg utökas serverns match så att den också kontrollerar inloggningsstatus.
