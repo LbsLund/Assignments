@@ -9,7 +9,7 @@ Lägg till följande case i klientens `match`:
 ```python
 case "Main Menu":
 
-    os.system('cls'
+    os.system('cls')
     print(menu + "\n")
     menuOptions = ["Exit"]
 
