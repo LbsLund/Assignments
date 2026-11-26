@@ -62,7 +62,7 @@ while clientActive:
         case _:
 
             client.sendall("error".encode())
-            print("Invalid Request:", request, "Logged in:" loggedIn)
+            print("Invalid Request:", request, "Logged in:", loggedIn)
 ```
 
 ## Matcha två värden
