@@ -1,6 +1,7 @@
 # 1. Client and Server
 
 ## Målet
+
 Först ska klienten kunna ansluta till servern. Servern accepterar anslutningen och skickar ett välkomstmeddelande.
 
 ## Client – Ansluter till server

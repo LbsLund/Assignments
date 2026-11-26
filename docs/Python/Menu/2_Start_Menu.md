@@ -15,6 +15,7 @@ while clientActive:
     match menu:
 
         case "Start Menu":
+            os.system('cls')
 
             print(menu + "\n")
             menuOptions = ["Log in", "Exit"]

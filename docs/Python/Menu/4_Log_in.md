@@ -1,6 +1,7 @@
 # 4. Log in
 
 ## Målet
+
 Klienten skickar Log in. Servern frågar efter lösenord och kontrollerar om det är rätt. I denna övning är lösenordet `admin`.
 
 ## Client
