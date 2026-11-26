@@ -1,7 +1,6 @@
 # 4. Log in
 
 ## Målet
-
 Klienten skickar Log in. Servern frågar efter lösenord och kontrollerar om det är rätt. I denna övning är lösenordet `admin`.
 
 ## Client
@@ -35,36 +34,16 @@ case "Log in":
 Servern behöver hålla reda på inloggningsstatus:
 
 ```python
-loggedIn = False
+case ("Log in", False):
 
-clientActive = True
-while clientActive:
+    client.sendall("Password:".encode())
+    password = client.recv(4096).decode()
 
-    request = client.recv(4096).decode()
-
-    match (request, loggedIn):
-
-        case ("Log in", False):
-
-            client.sendall("Password:".encode())
-            password = client.recv(4096).decode()
-
-            if password == "admin":
-                loggedIn = True
-                client.sendall("success".encode())
-            else:
-                client.sendall("fail".encode())
-
-        case ("Exit", True | False):
-
-            client.sendall("Disconnected from server".encode())
-            client.close()
-            clientActive = False
-
-        case _:
-
-            client.sendall("error".encode())
-            print("Invalid Request:", request, "Logged in:", loggedIn)
+    if password == "admin":
+        loggedIn = True
+        client.sendall("success".encode())
+    else:
+        client.sendall("fail".encode())
 ```
 
 ## Matcha två värden
