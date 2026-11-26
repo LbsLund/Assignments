@@ -34,9 +34,9 @@ while clientActive:
 
     request = client.recv(4096).decode()
 
-    match request:
+    match (request, loggedIn):
 
-        case "Exit":
+        case ("Exit", True|False):
 
             client.sendall("Disconnected from server".encode())
             client.close()
