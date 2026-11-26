@@ -17,7 +17,7 @@ case "Exit":
     print(message)
 
     client.close()
-    clientActive = False
+    menu = ""
 ```
 
 Variabeln `menu` innehåller nu texten `Exit`, så den kan skickas till servern.
