@@ -10,6 +10,7 @@ Skapa `server.py`:
 
 ```python
 import socket
+import os
 
 server = socket.socket()
 server.bind(("127.0.0.1", 5000))
