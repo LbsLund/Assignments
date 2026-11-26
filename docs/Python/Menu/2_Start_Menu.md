@@ -9,7 +9,7 @@ Lägg till efter att klienten tagit emot välkomstmeddelandet:
 ```python
 menu = "Start Menu"
 
-clientActive = False
+clientActive = True
 while clientActive:
 
     match menu:
