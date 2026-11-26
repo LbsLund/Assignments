@@ -11,8 +11,10 @@ Lägg till detta case:
 ```python
 case "Log in":
 
-    client.sendall(menu.encode())
+    os.system('cls')
+    print(menu + "\n")
 
+    client.sendall(menu.encode())
     message = client.recv(4096).decode()
     print(message, end=' ')
 

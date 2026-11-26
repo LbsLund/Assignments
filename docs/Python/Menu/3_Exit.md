@@ -41,6 +41,7 @@ while clientActive:
             client.sendall("Disconnected from server".encode())
             client.close()
             clientActive = False
+            
         case _:
             
             client.sendall("error".encode())
