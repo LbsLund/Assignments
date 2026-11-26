@@ -29,8 +29,9 @@ while clientActive:
 
 ## Hur fungerar `match`?
 
-`match` jämför värdet i `menu` med olika `case`. När ett case passar körs dess kod.
+`match` jämför värdet i `menu` med olika `case`. När ett case passar körs dess kod.  
 
+Exempel:
 ```python
 match menu:
     case "Start Menu":
@@ -48,3 +49,28 @@ När användaren väljer ett alternativ ändras `menu`. Nästa varv i loopen kö
 Det går också att använda `if`, `elif` och `else`. `match` kan däremot göra menystrukturer tydliga när det finns många alternativ och olika programlägen.
 
 På klienten används `match` för att styra användargränssnittet och vilket flöde programmet ska följa.
+
+## Extra: `os.system('cls')`
+
+Klientkoden använder:
+
+```python
+import os
+os.system('cls')
+```
+
+- `os` är en Python-modul för funktioner som samverkar med operativsystemet.
+- `system()` kör ett kommando via operativsystemets kommandotolk.
+- `cls` rensar terminalfönstret i Windows.
+
+Det påverkar bara terminalens utseende – inte anslutningen eller programmets data. På macOS och Linux används normalt `clear` i stället.
+
+## Testa
+
+1. Starta `server.py`.
+2. Starta `client.py` i ett annat terminalfönster.
+3. Klienten visat *Start Menu* med valen: *Log in* och *Exit*.
+4. Användaren kan välja ett alternativ, men inget mer händer.
+5. Inga nya menyer visas ännu, det kommer i senare guider!
+
+

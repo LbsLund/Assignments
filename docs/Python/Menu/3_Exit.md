@@ -41,7 +41,7 @@ while clientActive:
             client.sendall("Disconnected from server".encode())
             client.close()
             clientActive = False
-            
+
         case _:
             
             client.sendall("error".encode())
@@ -53,3 +53,10 @@ Detta är en förenklad variant. I nästa steg utökas serverns match så att de
 ## Avsluta båda sidor
 
 Klienten skickar Exit, servern svarar, servern stänger sin socket och klienten tar emot svaret och stänger sin socket.
+
+## Testa
+
+1. Starta `server.py`.
+2. Starta `client.py` i ett annat terminalfönster.
+3. Klienten visat *Start Menu* med valen: *Log in* och *Exit*.
+4. När användaren väljer *Exit* så stängs kopplingen mellan klient och server.

@@ -28,6 +28,8 @@ case "Log in":
         menu = "Main Menu"
     else:
         menu = "Start Menu"
+    
+    input("Press any key to continue...")
 ```
 
 ## Server
@@ -70,3 +72,12 @@ case ("Exit", True | False):
 ## Varför är match användbart på servern?
 
 Servern måste tolka kommandon och kontrollera om användaren får utföra dem. Att matcha flera värden samtidigt är praktiskt när fler funktioner läggs till, exempelvis saldo, insättning och transaktionshistorik. Klienten kan visa menyer, men servern ska alltid kontrollera behörighet.
+
+## Testa
+
+1. Starta `server.py`.
+2. Starta `client.py` i ett annat terminalfönster.
+3. Klienten visat *Start Menu* med valen: *Log in* och *Exit*.
+4. När användaren väljer *Log in* visas den menyn.
+5. Om användaren anger rätt lösenord skriver klienten ut meddelandet *success*, tryck på valfri tangent för att komma vidare, inget mer händer.
+6. Om användaren anger fel lösenord skriver klienten ut meddelandet: *fail*, tryck på valfri tangent för att komma vidare, *Start Menu* visas.
